@@ -1,0 +1,2 @@
+import{_ as r,j as t}from"./vendor-tTApdY0Y.bundle.js";class o extends ReportBaseViewController{constructor(e={}){r.defaults(e,{}),super(e)}initReport(e){this.script_name="TaxSummaryReport",this.viewId="TaxSummaryReport",this.context_menu_name=t.i18n._("Tax Summary"),this.navigation_label=t.i18n._("Saved Report"),this.view_file="TaxSummaryReportView.html",this.api=TTAPI.APITaxSummaryReport}getCustomContextMenuModel(){return{include:["default"]}}}export{o as TaxSummaryReportViewController};
+//# sourceMappingURL=TaxSummaryReportViewController-Bl1uTtKH.bundle.js.map

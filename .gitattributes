@@ -1,0 +1,2 @@
+TimeTrex_Community_Edition_v16.12.9/classes/modules/geoip/geoip.mmdb filter=lfs diff=lfs merge=lfs -text
+other_versions/windows/TimeTrex_Community_Edition-windows-installer.exe filter=lfs diff=lfs merge=lfs -text

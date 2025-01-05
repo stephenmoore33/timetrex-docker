@@ -1,0 +1,4328 @@
+:root {
+    --ttprimevue-border-color: #a9a9a9;
+    --ttprimevue-font-family: Arial, Helvetica, sans-serif;
+    --ttprimevue-font-color: #343434;
+    --ttprimevue-general-font-size: 14px;
+    --ttprimevue-widget-label-font-size: 12px;
+    --ttprimevue-input-label-font-size: 12px;
+    --ttfont-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	line-height: 1.1 !important;
+	/** #1187 fix bold-looking text caused by mac text smoothing **/
+	-webkit-font-smoothing: antialiased; /* This needs to be set or some normal faced fonts look bold on Mac in Chrome/Webkit based browsers. */
+	-moz-osx-font-smoothing: grayscale; /* Fixes font bold issue in Firefox version 25+ on Mac */
+    color: #3b3b3b;
+}
+
+body {
+	font-size: 12px;
+	font-family: var(--ttfont-family);
+	overflow-y: hidden;
+	min-width: 990px;
+}
+
+/* Also overriding various styles with .mobile-device-mode in LoginView.css */
+body.mobile-device-mode {
+	min-width: 0; /* Disabling the min-width prevents the page from being forced too big to show properly on mobile (too zoomed out). */
+}
+
+input, select, textarea {
+    font-family: var(--ttfont-family);
+}
+
+.dataError {
+	-webkit-touch-callout: text;
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+}
+
+img {
+	border: none;
+}
+
+span {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+span.title {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+select {
+	font-size: 12px;
+}
+
+html, div {
+	/*height: 100%;*/
+}
+
+hr {
+	/* From Bootstrap styling, used on login screen at least */
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,.1);
+}
+
+textarea {
+	resize: vertical;
+	font-size: 12px;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+input {
+	font-size: 12px;
+}
+
+input:disabled {
+	/*border: 1px solid #DDD;*/
+	/*background-color: #F5F5F5;*/
+	color: #362b36;
+}
+
+/* Hide the site description on main application pages. Only show on login page. */
+/* Only meant for search engines, so the php code should hide for normal users */
+.application-bg .site-description {
+	display: none;
+}
+
+/* Opacity filter is only used for the animal background and to give a different shade on mobile & app loading. Make bg transparent afterwards. */
+.application-bg #login-bg_opacity_filter {
+	background: none;
+}
+
+.site-description {
+	background: #ffffff;
+	color: #000000;
+	border: 1px solid #000000;
+	padding: 10px;
+	margin: 10px;
+}
+
+.loading-view {
+	position: fixed;
+	width: 652px;
+	height: 477px;
+	-webkit-animation: fadi 0.25s 1;
+	-moz-animation: fadi 0.25s 1;
+	top: 50%;
+	left: 50%;
+	margin: -238.5px 0 0 -326px;
+}
+
+.loading-view .progress-bar {
+	left: 230px;
+	position: absolute;
+	top: 300px;
+	width: 200px;
+	height: 12px;
+	background-color: #eaeaea;
+}
+
+progress::-webkit-progress-bar {
+	background-color: #eaeaea;
+}
+
+progress::-webkit-progress-value {
+	background: #eaeaea;
+	background: -moz-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #57beff), color-stop(100%, #12a3ff));
+	background: -webkit-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: -o-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: -ms-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: linear-gradient(to bottom, #57beff 0%, #12a3ff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#57beff', endColorstr='#12a3ff', GradientType=0);
+
+}
+
+progress::-moz-progress-bar {
+	background: #eaeaea;
+	background: -moz-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #57beff), color-stop(100%, #12a3ff));
+	background: -webkit-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: -o-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: -ms-linear-gradient(top, #57beff 0%, #12a3ff 100%);
+	background: linear-gradient(to bottom, #57beff 0%, #12a3ff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#57beff', endColorstr='#12a3ff', GradientType=0);
+
+}
+
+.loading-view .progress-label {
+	color: #ffffff;
+	left: 293px;
+	position: absolute;
+	top: 320px;
+}
+
+.quick-punch-login .loading-view .progress-label {
+	background: #ffffff;
+	color: #000000;
+}
+
+.recruitment-portal .loading-view .progress-label {
+	background: #ffffff;
+	color: #000000;
+}
+
+.link {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* CSS Flash Div
+ * Used to make a div flash. For example in the CameraBrowser when a photo is taken.
+ * Usage: Add the class, then remove it after x seconds. Make sure the JS duration matches the CSS duration.
+ * If individual usage requires modification, override the class with more specificity, rather than making changes to this global style.
+
+ Example JS:
+
+ my-div.addClass( 'flash' );
+ setTimeout( function(){
+	my-div.removeClass( 'flash' );
+ }, 1000);	// Timeout must be the same length as the CSS3 transition or longer (or you'll mess up the transition)
+
+ */
+.flash {
+	animation: flash 1s ease-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes flash {
+	0% { opacity:1;}
+	10% { opacity:0;}
+	100% { opacity:1}
+}
+/* End flash code */
+
+/* Animated glow border around images. For example for blue next arrows and green ticks animation.
+ * e.g. blue is #2b82b8
+ */
+.animate-glow {
+	animation: animate-glow 2s alternate infinite;
+}
+@keyframes animate-glow {
+	0% { filter: drop-shadow(0 0 0 currentColor) drop-shadow(0 0 0 currentColor) }
+	100% { filter: drop-shadow(0 0 2px currentColor) drop-shadow(0 0 4px currentColor) drop-shadow(0 0 0 currentColor) drop-shadow(0 0 0 currentColor); }
+}
+/* arrow and tick glow end */
+
+.grid-div {
+	max-height: calc(100% - 70px);
+	position: relative;
+    margin: 15px 0;
+}
+
+.edit-view .grid-div {
+	max-height: 100%;
+}
+
+.grid-outline {
+	/*border: 1px solid #c7c7c7;*/
+	margin-bottom: 3px;
+	margin-top: 3px;
+	padding: 3px;
+	position: relative;
+	z-index: 1;
+	/*border-radius: 4px;*/
+}
+
+.inside-grid {
+	float: left;
+	display: none;
+}
+
+.tt-button.p-button {
+    background: #fff;
+    color: #32689b;
+    border-color: #e1e1e1;
+    padding: 0.4rem 0.6rem;
+}
+
+.tt-button .p-button-label {
+    font-size: 14px;
+}
+
+.tt-button .tticon {
+    margin-right: .5rem;
+    margin-bottom: 1px
+}
+
+.tt-button.p-button:hover.p-button-label {
+    color: #fff;
+}
+
+.file-browser .tt-button {
+    height: 2rem;
+    color: #000;
+}
+
+.available-balance-info, .overlapping-shift-info {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.available-balance-h-box .t-text, .overlapping-shift-h-box .t-text {
+    position: relative;
+    top: -3px;
+}
+
+.save-and-continue-div {
+	/*background: none repeat scroll 0 0 #EAEAEA;*/
+	height: 90%;
+	position: absolute;
+	text-align: center;
+	width: 97%;
+	top: 100px;
+
+}
+
+.save-and-continue-div .message {
+	display: block;
+	font-weight: bold;
+	margin-top: 50px;
+}
+
+.save-and-continue-div .p-button {
+    margin-top: 5px;
+}
+
+.dashlet .no-result-div .message {
+	font-size: 20px;
+}
+
+.save-and-continue-div .save-and-continue-button-div {
+
+}
+
+.hierarchy-div {
+    /*background: none repeat scroll 0 0 #EAEAEA;*/
+    height: 90%;
+    position: absolute;
+    text-align: center;
+    width: 97%;
+    top: 100px;
+}
+
+.hierarchy-div .message {
+    display: block;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.hierarchy-div .p-button {
+    margin-top: 5px;
+}
+
+.hierarchy-div .save-and-continue-button-div {
+
+}
+
+.ribbon-button {
+	text-align: center;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	width: 100px;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.ribbon-button:hover {
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eafa), to(#c8dcf0));
+	background: -moz-linear-gradient(top, #d9eafa, #c8dcf0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9eafa', endColorstr='#c8dcf0', grandientType=1);
+	-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9eafa', endColorstr='#c8dcf0', grandientType=1); /** IE8 **/
+	background-image: -ms-linear-gradient(#d9eafa, #c8dcf0, #c8dcf0);
+	background: -ms-linear-gradient(top, #d9eafa 0%, #c8dcf0 100%);
+
+	border: 1px solid #cecece;
+	border-radius: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 9px;
+	padding-right: 9px;
+	color: #000000 !important;
+}
+
+.ribbon-button .label {
+
+}
+
+.ribbon-button .icon {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 3px;
+}
+
+.context-menu-icon {
+	background-size: 15px;
+	background-repeat: no-repeat;
+}
+
+/*Override styles from Jquery style*/
+.ui-button-text-only .ui-button-text {
+	padding: .2em .5em;
+}
+
+/*Override styles from Jquery style end*/
+
+.drag-holder-table {
+	cursor: default;
+	z-index: -1000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 5px;
+}
+
+/* This code is related to the office animal background image on login. */
+/* Note: This CSS was originally in index.php in a <style> tag, to ensure the background image on login loads immediately vs putting it in the LoginView.css view. Even cached it was delayed while in css file. */
+.login-bg {
+    background: url('@/theme/default/images/login_background_base.png');
+    position: fixed;
+    background-size: cover;
+    background-position: center;
+    width: 100vw; /** hack to allow not half a screen width in safari... **/
+}
+
+.atferLogin-bg {
+	background: #ffffff;
+}
+
+.arrow {
+	cursor: pointer;
+	position: relative;
+	top: 2px;
+}
+
+.full-width-column {
+	width: 100% !important;
+}
+
+.center {
+	text-align: center;
+}
+
+.content-container {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+
+}
+
+.content-container .loading-bar {
+	color: #ffffff;
+	font-size: 46px;
+	font-weight: bold;
+	margin: auto;
+}
+
+.content-container-after-login {
+	/*padding: 0; !* top 5px padding will now be applied by the context menu bottom *!*/
+	position: relative;
+	top: 0;
+	width: 100%;
+    height: calc(100vh - 50px); /* 50px is the height of the header bar */
+	background: #ffffff;
+}
+
+.layout-horizontal .content-container-after-login {
+    height: auto;
+}
+
+.portal .content-container-after-login {
+	overflow: auto;
+	height: calc(100% - 60px);
+}
+
+.top-container {
+	margin-top: 0;
+	margin-right: 0;
+	margin-left: 0;
+	height: 164px; /* Set to 164px to be the exact required height of the ribbon menu and no space below. The space will be made in contentContainer child elements */
+	position: relative;
+	overflow: hidden; /* Bug fix: sometimes (always during page refresh) during ribbon menu generation, a blue background (from context menu) shines through between top and content container. Moved the space from top container to content, then added overflow hidden to hide this blue flash */
+}
+
+.top-container-after-login {
+	background: #ffffff;
+}
+
+.top-container .login-information-div {
+	padding-left: 70px;
+	position: relative;
+	top: -101px;
+	width: 77%;
+}
+
+.top-container .login-information-div .login-information {
+	color: #555555;
+	font-weight: bold;
+}
+
+.notification-bell {
+	cursor: pointer;
+	display: inline-block;
+	line-height: 30px;
+	position: fixed;
+	right: 195px;
+	font-weight: 700;
+	z-index: 1;
+}
+
+.notification-total {
+	color: #ffffff;
+	line-height: normal;
+	vertical-align: middle;
+}
+
+.notification-close {
+	font-size: 20px;
+}
+
+.toast {
+	border-width: 3px !important;
+}
+
+.notification-outline-infinite {
+	border: 3px solid red;
+	animation: notification-outline-animation 2s infinite;
+}
+
+.notification-outline-repeat {
+	border: 3px solid red;
+	animation: notification-outline-animation 2s 2;
+	animation-fill-mode: forwards;
+}
+
+@keyframes notification-outline-animation {
+	100% {
+		border: 3px solid rgba(0, 0, 0, .1);
+	}
+}
+
+.bottom-container {
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	display: block;
+	margin-right: 20px;
+	margin-left: 20px;
+	position: fixed;
+	height: 38px;
+	z-index: 0; /* the z-index needs to be less than the one for .paging-2-div otherwise the pagination nav buttons won't be clickable */
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+}
+
+.portal .bottom-container {
+	bottom: -5px;
+}
+
+.bottom-container .copyright-container {
+	float: left;
+}
+
+.bottom-container .copy-right-info {
+	color: #333333;
+	font-size: 11px;
+	text-decoration: none;
+	float: left;
+	padding-top: 12px;
+}
+
+.bottom-container .copy-right-logo-link {
+	float: left;
+}
+
+.bottom-container .copy-right-logo {
+	display: block;
+	height: 100%;
+	max-height: 100%;
+	float: left;
+	padding-top: 2px;
+}
+
+/* Feedback dialog general */
+.feedback-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 100;
+	opacity: 1;
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(0, 0, 0);
+	/* RGBa with 0.6 opacity */
+	background: rgba(0, 0, 0, 0.6);
+	display: flex; /* For centering the feedback dialog. */
+	justify-content: center; /* For centering the feedback dialog horizontally. */
+	align-items: center; /* For centering the feedback dialog vertically. */
+}
+
+.feedback-container {
+	position: relative;
+	background-color: #f8f8f8;
+	z-index: 6001;
+	border: 2px solid #355f87;
+	border-top-width: 30px;
+	border-radius: 4px;
+	padding: 7px;
+	box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.3), 0 0 20px 0px rgba(0, 0, 0, 0.38);
+	text-align: center;
+	font-size: 21px;
+	width: 35%;
+}
+
+.feedback-container .top-bar-title {
+	position: absolute;
+	top: -1.7em;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.feedback-container .title {
+	text-align: left;
+	font-weight: bold;
+	padding: 0 18px;
+}
+
+.feedback-container .context-box {
+	padding: 18px;
+}
+
+.feedback-container .feedback-messagebox {
+	min-height: 60px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	width: 100%;
+}
+
+.feedback-container .bottom-bar {
+	position: absolute;
+	border: none;
+	bottom: 4px;
+	width: 100%;
+}
+
+/* footer bar manual click feedback link */
+.feedback-link-container {
+	display: none;
+	text-align: center;
+	color: #333333;
+}
+
+.feedback-link-container span {
+	font-size: 12px;
+}
+
+.feedback-link-container #feedback-link:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.feedback-page.default .top-image {
+	width: 89%;
+}
+
+.feedback-page.positive .top-image {
+	width: 42%;
+}
+
+.feedback-page.negative .top-image {
+	width: 70%;
+}
+
+.feedback-page .page-text {
+	margin-top: 8px;
+}
+
+/* Page layout - positive page */
+
+.feedback-page.positive .page-text.block3 {
+	font-size: 15px;
+}
+
+/* Page layout - negative page */
+
+.feedback-container .user-contact-details {
+	width: 100%;
+	text-align: left;
+	padding: 0 0 15px;
+}
+
+.feedback-container .contact-notice-text {
+	padding: 5px 0 10px;
+	font-size: 12px;
+}
+
+.feedback-container .row {
+	padding-top: 4px;
+	line-height: 24px;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* Buttons */
+.feedback-page .feedback-button {
+	display: block;
+	margin: 0 auto 17px;
+	padding: 10px 20px;
+	width: 66%;
+	font-size: 21px;
+}
+
+.feedback-page.negative .feedback-button {
+	display: inline-block;
+	width: 49%;
+}
+
+/*.feedback-page .feedback-button.positive-button {*/
+/*margin-top: 6px;*/
+/*background-color: #fff;*/
+/*border-color: #28a745;*/
+/*color: #28a745;*/
+/*}*/
+
+/*.feedback-page .feedback-button.positive-button:hover {*/
+/*background-color: #28a745;*/
+/*border-color: #28a745;*/
+/*color: #fff;*/
+/*}*/
+
+.feedback-page .feedback-button.negative-button {
+	background-color: #ffffff;
+	border-color: #fc9403;
+	color: #de7e00;
+}
+
+/*
+.feedback-page .feedback-button.negative-button:hover {
+    background-color: #fc9403;
+    border-color: #de7e00;
+    color: #fff;
+}
+*/
+.feedback-page .feedback-button.negative-button:hover {
+	background-color: rgba(255, 149, 0, 0.10);
+	border-color: #de7e00;
+	color: #de7e00;
+}
+
+.feedback-page .feedback-button.cancel-button {
+	background-color: #ffffff;
+	border-color: #afafaf;
+	color: #656565;
+}
+
+.feedback-page .feedback-button.cancel-button:hover {
+	background-color: #f0f0f0;
+	border-color: #888888;
+	color: #444444;
+}
+
+/* End of feedback dialog section */
+
+.ui-th-ltr, .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+	border-left: 0 none;
+    /*background: #375979;*/
+    border-right: 1px solid #dddddd;
+	background: #E9ECEF;
+    color: #3b3b3b;
+	/*border-right: 1px solid transparent;*/
+	font-weight: bold;
+}
+
+/*.ui-jqgrid-btable .ui-state-hover{*/
+/*color: #000000;*/
+/*background: none;*/
+/*}*/
+
+.t-select {
+	background: #ffffff;
+	border: 1px solid #bdbdbd;
+	color: #000000;
+	min-width: 100px;
+	max-width: 200px;
+	height: 24px;
+	vertical-align: top;
+}
+
+.t-list {
+
+}
+
+.t-select-readonly {
+	background: none;
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: window;
+	appearance: none;
+}
+
+.ui-jqgrid {
+	border: 0 none;
+}
+
+.ui-jqgrid-hbox {
+    /*background: #375979;*/
+    background: #e9ecef;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+	-moz-border-radius-topleft: 0;
+	-webkit-border-top-left-radius: 0;
+	-khtml-border-top-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+	-moz-border-radius-topright: 0;
+	-webkit-border-top-right-radius: 0;
+	-khtml-border-top-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+	-moz-border-radius-bottomleft: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-khtml-border-bottom-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	-moz-border-radius-bottomright: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-khtml-border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+/*Widgets*/
+
+.form-item-div {
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	min-height: 25px;
+}
+
+.form-item-div .form-item-label {
+	float: left;
+	margin-right: 10px;
+	position: relative;
+	top: 4px;
+	min-width: 135px;
+	text-align: left;
+
+}
+
+.form-item-div .form-item-input-div {
+	float: left;
+	position: relative;
+
+}
+
+.t-text-area {
+	min-width: 350px;
+	width: 100%;
+    outline: none;
+    vertical-align: middle;
+    border: 1px solid rgb(211, 204, 204);
+}
+
+.t-text-area-readonly {
+	background: #eaeaea;
+	border: none;
+}
+
+.t-text-area:disabled {
+	color: #362b36;
+}
+
+.t-text-input,
+.t-color-picker, .cp-HEX {
+	width: 156px;
+	line-height: 25px;
+	outline: none;
+	vertical-align: middle;
+	border: 1px solid rgb(211, 204, 204);
+	height: 24px;
+}
+
+.t-text-input-readonly {
+	background: #eaeaea;
+	border: none;
+}
+
+.t-text-input-readonly-bg {
+	background: #dddddd;
+}
+
+.link-widget-box {
+	cursor: pointer;
+}
+
+.widget-h-box-mapIcon {
+	height: 20px;
+	vertical-align: middle;
+	margin-right: 0.7em;
+}
+
+.widget-h-box-mapLocationWrapper {
+	display: inline-block;
+}
+
+.widget-h-box .mass-edit-checkbox-wrapper {
+	vertical-align: baseline;
+}
+
+.widget-h-box > .t-checkbox {
+	top: 5px;
+}
+
+.mass-edit-checkbox-wrapper {
+	position: relative;
+	padding-left: 18px;
+	display: inline;
+	vertical-align: middle;
+	line-height: 24px;
+}
+
+.mass-edit-checkbox {
+	height: 18px;
+	width: 18px;
+	margin: 0;
+	position: relative;
+	top: 2px;
+	vertical-align: middle;
+}
+
+.checkbox-mass-edit-checkbox-wrapper {
+	vertical-align: -moz-middle-with-baseline;
+	vertical-align: -webkit-middle-with-baseline;
+
+}
+
+.textarea--mass-edit-checkbox-wrapper {
+	vertical-align: top;
+}
+
+.tag-mass-edit-checkbox-wrapper {
+	float: left;
+	display: block;
+	width: 18px;
+	height: 24px;
+	padding: 0;
+	top: 3px;
+}
+
+.input-helper {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.input-helper:before {
+	content: '';
+	display: block;
+	position: absolute;
+}
+
+.input-helper--checkbox {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.input-helper--checkbox:before {
+	top: 2px;
+	left: 0;
+	width: 12px;
+	height: 12px;
+	border: 1px solid #a40000;
+}
+
+.mass-edit-checkbox {
+	opacity: 0;
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.mass-edit-checkbox:checked + label:before {
+	background: forestgreen;
+	border: 1px solid forestgreen;
+	opacity: 0.8;
+}
+
+.t-text {
+	max-width: 760px;
+	display: inline-block;
+	word-wrap: break-word;
+	line-height: 25px;
+}
+
+.t-text-selected-able {
+	user-select: text;
+}
+
+.t-checkbox {
+	height: 18px;
+	width: 18px;
+	margin: 0;
+	position: relative;
+	top: 0;
+}
+
+.clear-both-div {
+	clear: both;
+}
+
+.t-button {
+	background: #ffffff;
+	border-radius: 4px;
+	border: 1px solid #bdbdbd;
+	display: inline-block;
+	color: #000000;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 5px 20px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.t-button:disabled {
+	color: #cccccc;
+}
+
+.bottom-bar-yes-btn {
+	margin-right: 5px;
+}
+
+/*.t-button:hover, .t-button:focus {*/
+/*background: #e2e2e2;*/
+/*}*/
+
+.t-button:active {
+	position: relative;
+	top: 1px;
+}
+
+.view {
+    /*background: #e1e1e1;*/
+    /*margin: 0;*/
+	background: #fff;
+	/*padding: 5px 15px;*/
+	height: 100%;
+	position: relative;
+}
+
+.sub-view {
+
+	background: none;
+	border: none;
+	margin: 0;
+	height: 100%;
+}
+
+.view .total-number-div {
+	text-align: left;
+	height: 25px;
+}
+
+.view .total-number-div .total-number-span {
+	line-height: 25px;
+	vertical-align: middle;
+	margin-left: 5px;
+
+}
+
+.view .grid-top-border, .edit-view .grid-top-border {
+	/*background: none repeat scroll 0 0 #a40000;*/
+	height: 5px;
+	width: 100%;
+	display: none;
+	padding: 0px 7px;
+}
+
+.view .grid-bottom-border, .edit-view .grid-bottom-border {
+	/*background: none repeat scroll 0 0 #a40000;*/
+	height: 5px;
+	display: block;
+	position: fixed;
+	bottom: 39px;
+	width: calc(100% - 12px);
+}
+
+.edit-view .grid-bottom-border {
+	position: relative;
+	bottom: 0px;
+	width: 100%;
+	padding: 0px 5px;
+}
+
+.view .bottom-div {
+	height: 55px;
+	margin-top: 5px;
+	max-width: 100vw;
+}
+
+.sub-view .bottom-div {
+	height: auto;
+	margin: 0px;
+}
+
+.edit-view {
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(0, 0, 0);
+	/* RGBa with 0.6 opacity */
+	background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); /* Blur the background without needing to apply it to the primary view and remember to remove it. */
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0; /* To counteract the 5px padding on parent. Without it, in sandbox mode the red border shows through and not covered by overlay. Same for top:0, but that was already there */
+	width: 100%;
+	z-index: 90;
+    display: flex; /* To vertically center the edit views with minimum height */
+    align-items: center; /* center vertically */
+    justify-content: center; /* center horizontally */
+}
+
+.edit-view .tab-label-wrap {
+    position: relative; /* BugFix: To ensure tab-arrows are positioned correctly with their absolute reference, else they go into the context menu. */
+	overflow: hidden;
+	margin-bottom: -1px;  /* -4px must have been for old ui, looks bad on new design. */
+	height: 32px;
+}
+
+.edit-view .label-wrap {
+	display: inline-block;
+	overflow: hidden;
+}
+
+.edit-view .btn-wrap {
+	display: inline-block;
+	margin-left: 15px;
+	top: 10px;
+	position: absolute;
+}
+
+.edit-view .tab-arrow {
+	position: relative;
+	top: -5px;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.edit-view .close-icon {
+	cursor: pointer;
+	font-size: 0;
+	position: absolute;
+	right: -15px;
+	top: -15px;
+    background-color: #fff; /* To block out the context-border line behind the X */
+	background-image: url("global/widgets/ribbon/icons/cancel-35x35.png");
+	background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 14px; /* Blocks out more of the context-border line, and gives more clickable area to X */
+	width: 15px;
+	height: 15px;
+
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+
+	filter: grayscale(100%);
+	/*filter: url(gray.svg#grayscale);*/
+
+	filter: gray;
+
+}
+
+.edit-view .edit-view-form-item-div {
+	float: left;
+	width: 100%;
+	/*border-bottom: 1px solid #c7c7c7;*/
+}
+
+.edit-view .edit-view-form-item-div:last-of-type {
+	border-bottom: none;
+}
+
+.edit-view .edit-view-form-item-div .edit-view-form-item-label-div {
+	/*background: #375a7c;*/
+	/*border-right: 2px solid #ae0000;*/
+	float: left;
+	height: 32px;
+	/*margin-right: 10px;*/
+	min-height: 32px;
+	min-width: 145px;
+}
+
+.edit-view .edit-view-form-item-div .edit-view-form-item-sub-label-div {
+	/*background: #375a7c;*/
+    border-left: 1px solid #dbdee1;
+	float: left;
+	height: 32px;
+	margin-right: 10px;
+	/*width: 160px;*/
+
+}
+
+.edit-view .edit-view-form-item-div .edit-view-form-item-sub-label-div .edit-view-form-item-label {
+	min-width: 1px;
+}
+
+.edit-view .edit-view-form-item-div:first-child .edit-view-form-item-label-div {
+	border-top-left-radius: 4px;
+
+}
+
+.edit-view .edit-view-form-item-div:last-of-type .edit-view-form-item-label-div {
+	border-bottom-left-radius: 4px;
+
+}
+
+.edit-view .edit-view-form-item-div .edit-view-form-item-label {
+	color: #000;
+	float: right;
+	padding-right: 7px;
+	margin-left: 5px;
+	margin-top: 10px;
+	min-width: 135px;
+	text-align: right;
+	min-width: 145px;
+}
+
+.edit-view .edit-view-form-item-div .edit-view-form-item-input-div {
+	float: left;
+	margin-right: 5px;
+	margin-top: 4px;
+	position: relative;
+}
+
+.edit-view-form-item-input-div > .t-checkbox {
+	position: absolute;
+	top: 5px;
+}
+
+.edit-view .edit-view-form-item-div .remove-margin {
+	margin-top: -4px;
+	border-bottom: none;
+
+}
+
+.view {
+    /*padding: 0 15px;*/
+}
+
+.edit-view .edit-view-tab-bar {
+	background: #fff;
+	padding: 0;
+	margin: 5px auto;
+	width: 98%;
+	min-width: 900px;
+	max-width: 1380px;
+	border-radius: 4px;
+    height: 96%;  /* #VueDev: Uncomment this if you want the height of the edit view boxes to be more or less full height instead of minium */
+}
+
+/*Current table div style*/
+.edit-view .edit-view-tab-bar .edit-view-tab-outside {
+	background: none repeat scroll 0 0 #f9f9f9;
+	/*border: 1px solid #e9ecef;*/
+	border-radius: 4px;
+	border-top-left-radius: 0;
+	min-height: 200px;
+	overflow: auto;
+    height: calc(100% - 30px - 34px - 20px); /* 30px for the height of the tab bar and 34px for the approx height of the new vue context menu 20px to reduce overflow TODO: do away with these hardcoded calculated heights in future refactor. */
+}
+
+/*Current table div style*/
+.edit-view .edit-view-tab-bar .edit-view-tab-outside-sub-view {
+	background: none repeat scroll 0 0 #fff;
+	/*border: 1px solid #e9ecef;*/
+	border-radius: 4px;
+	border-top-left-radius: 0;
+	min-height: 400px;
+	overflow-y: hidden; /** #2353 - Prevent this extra scrollbar. Only show data table scrollbars. **/
+	overflow-x: auto;
+	padding-top: 0;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 0;
+    height: calc(100% - 80px); /* Adjustment for topbar and context menu bar */
+}
+
+.layout-horizontal .edit-view .edit-view-tab-bar .edit-view-tab-outside-sub-view {
+    height: calc(100% - 125px); /* On Horizontal mode the topbar takes up 45px more than static and slim*/
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab {
+	margin: 7px 10px;
+	height: calc(100% - 32px - 14px);
+}
+
+/*.first-sub-view .sub-grid-view-div, .second-sub-view .sub-grid-view-div, .third-sub-view .sub-grid-view-div, .forth-sub-view .sub-grid-view-div, .fifth-sub-view .sub-grid-view-div {*/
+/*height: 200px;*/
+/*}*/
+
+.edit-view .edit-view-tab-bar .sub-grid-view-div {
+	overflow: auto;
+}
+
+.edit-view .edit-view-tab-bar .first-column-sub-view {
+	min-width: 400px;
+	margin-bottom: 5px;
+	width: 100%;
+	height: 100%;
+	padding-top: 5px;
+
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab .first-column {
+	/*border: 1px solid #c7c7c7;*/
+	/*border-radius: 4px;*/
+	float: left;
+	width: 48%;
+	margin-bottom: 5px;
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab .first-row {
+	border: 1px solid #c7c7c7;
+	border-radius: 4px;
+	float: left;
+	min-width: 400px;
+	margin-bottom: 5px;
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab .second-column {
+	/*border: 1px solid #c7c7c7;*/
+	/*border-radius: 4px;*/
+	float: right;
+	width: 50%;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+/** Issue #3462 - Applies a border-top to separate messages in MessageControlView and fixes a bug where it applied to all views with a .second-column **/
+.message-separator {
+    border-top: 1px solid #dfdce3;
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab .border-column {
+	border: 1px solid #c7c7c7;
+	border-radius: 4px;
+	float: left;
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab .second-row {
+	border: 1px solid #c7c7c7;
+	border-radius: 4px;
+	float: left;
+	margin-bottom: 5px;
+}
+
+.edit-view .edit-view-tab-bar .edit-view-tab-outside .edit-view-tab .detail-grid-row {
+	float: left;
+	margin-bottom: 5px;
+}
+
+/*Tab's left offset'*/
+.edit-view .edit-view-tab-bar .edit-view-tab-bar-label {
+	padding-left: 0;
+	padding-top: 0;
+	background: none;
+	border: medium none;
+    /*border-bottom: 1px solid #E9ECEF;*/
+}
+
+.edit-view .edit-view-tab-bar .ui-tabs-panel {
+    border-top: 1px solid #E9ECEF;
+}
+
+/*table Default style*/
+
+.edit-view .edit-view-tab-bar-label .ui-state-default {
+    border-width: 0 0 2px 0; /* Ensures the hover and non-hover states have the same border width to prevent text bouncing on hover. */
+	background: none;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	font-size: 13px;
+}
+
+.edit-view .edit-view-tab-bar-label .ui-state-hover {
+	background: none !important;
+	/*font-weight: bold;*/
+	/*color: #000000;*/
+    border-width: 0 0 2px 0; /* Makes a straight edged bottom border rather than 45 degree slant. */
+    border-bottom: 2px solid #2196f3;
+}
+
+.edit-view .error-tab {
+	transition: background-color 1s ease;
+	background: #cb2e2e !important;
+}
+
+.edit-view .error-tab-hide {
+	transition: background-color 2s ease;
+	background: none !important;
+}
+
+.edit-view .warning-tab {
+	transition: background-color 1s ease;
+	background: #ffff00 !important;
+}
+
+.edit-view .warning-tab-hide {
+	transition: background-color 2s ease;
+	background: none !important;
+}
+
+/*Selected tab style*/
+
+.edit-view .edit-view-tab-bar-label .ui-state-active {
+    /*background: none repeat scroll 0 0 #e9e9e9 !important;*/
+    background: none;
+    border-width: 0 0 2px 0; /* Makes a straight edged bottom border rather than 45 degree slant. */
+    border-bottom: 2px solid #2196f3;
+    color: #204175;
+    font-weight: bold;
+}
+
+/*No Selected tab font style*/
+.edit-view .ui-state-default a, .edit-view .ui-state-default a:link, .edit-view .ui-state-default a:visited {
+	color: #3b3b3b;
+	font-weight: bold;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+}
+
+/*Selected tab font style*/
+.edit-view .ui-state-active a, .edit-view .ui-state-active a:link, .edit-view .ui-state-active a:visited {
+	color: #a40000;
+}
+
+.edit-view .ui-tabs-panel {
+	padding: 0;
+}
+
+.edit-view .navigation-div {
+	position: absolute;
+	right: 0;
+
+}
+
+.edit-view .navigation-div .navigation-label {
+	float: left;
+	margin-right: 10px;
+	margin-top: 8px;
+    font-size: 13px;
+	font-weight: bold;
+	color: #34628d;
+}
+
+.edit-view .navigation-div .left-click {
+	float: left;
+	cursor: pointer;
+}
+
+.edit-view .navigation-div .right-click {
+	float: left;
+	cursor: pointer;
+	right: 5px;
+}
+
+.edit-view .navigation-div .navigation-widget-div {
+	float: left;
+
+}
+
+.edit-view .navigation-div .navigation-widget-div .a-combobox {
+	margin-top: 1px;
+}
+
+.edit-view .widget-h-box {
+
+}
+
+.edit-view .widget-h-box > .widget-right-label-inline-box-fix {
+	position: relative;
+	top: -3px;
+}
+
+.edit-view .widget-h-box .a-combobox {
+	position: relative;
+	top: 0px;
+	/** #2339 - fixing bad awesomebox alignment on in/out screen when Home View is the parent view controller. **/
+	display: inline-block;
+}
+
+.edit-view .widget-h-box > span {
+
+}
+
+.edit-view .widget-h-box input[type='text'] {
+	margin-left: 0;
+}
+
+.edit-view .widget-h-box input[type='checkbox'] {
+	margin-left: 0;
+	vertical-align: top;
+}
+
+.edit-view .widget-right-label {
+	margin-left: 5px;
+	margin-right: 5px;
+	line-height: 25px;
+}
+
+.edit-view .widget-top-label {
+	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.edit-view .v-box {
+	float: left;
+}
+
+.edit-view .h-box {
+
+}
+
+.error-tip {
+	background: #f78b83 !important;
+	border: 1px solid #d95252 !important;
+}
+
+.warning-tip {
+	background: #ffff00 !important;
+	border: 1px solid #e7be00 !important;
+}
+
+.qtip2-error-tip {
+	color: rgb(203, 46, 46) !important;
+	background-color: rgb(203, 46, 46) !important;
+	border-color: rgb(203, 46, 46) !important;
+	border: 0 !important;
+	font-weight: bold;
+}
+
+.qtip2-error-tip .qtip-content {
+	color: #ffffff;
+}
+
+.qtip {
+	position: absolute;
+	left: -28000px;
+	top: -28000px;
+	display: none;
+	max-width: 400px;
+}
+
+.qtip-default {
+	border: 1px solid #e7be00;
+	background-color: #ffff00;
+	color: #555555;
+}
+
+.ck-error-tip {
+	outline: 1px solid #d95252 !important;
+}
+
+.qtip.overlapping-info-display {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    color: #555555;
+    max-width: 525px;
+}
+
+.overlapping-info-table {
+    width: 100%;
+}
+
+.overlapping-info-table td, .overlapping-info-table th {
+    padding: 0 15px;
+}
+
+.overlapping-info-table tr {
+    border-bottom: 5px solid transparent;
+}
+
+.overlapping-info-table .overlap-absence {
+    color: red;
+}
+
+.overlay {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 100;
+	background: #ffffff; /* Fix for IE */
+	opacity: 0; /* Fix for IE */
+}
+
+.paging-div {
+	cursor: pointer;
+	text-align: center;
+	color: #555555;
+	-webkit-transition: background 0.2s linear;
+	-moz-transition: background 0.2s linear;
+	-ms-transition: background 0.2s linear;
+	-o-transition: background 0.2s linear;
+	transition: background 0.2s linear;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+}
+
+.paging-div:hover {
+	background-color: #c6dcef;
+	color: #362b36;
+}
+
+.paging-div .paging-span {
+	line-height: 30px;
+	font-size: 12px;
+
+}
+
+.paging-2-div {
+	float: right;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	z-index: 1; /*Make sure this show above bottom copryright area*/
+	position: relative;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+}
+
+.bottom-div .paging-2-div {
+	margin-top: 8px;
+}
+
+.paging-2-div .left-buttons-div {
+	float: left;
+	color: #154b82;
+}
+
+.paging-2-div .right-buttons-div {
+	float: left;
+	color: #154b82;
+}
+
+.context-menu-item.context-menu-hover {
+	color: #000000;
+	cursor: pointer;
+	background-color: #ccf2ff;
+}
+
+.disabled, .context-menu-disabled {
+	color: #666666;
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+
+	filter: grayscale(100%);
+	/*filter: url(gray.svg#grayscale);*/
+
+	filter: gray;
+	cursor: default !important;
+	opacity: 0.5;
+}
+
+.paging-2-div .double-left-arrow {
+	/*background: url("../images/double_left_arrow.png");*/
+	height: 14px;
+	width: 17px;
+	float: left;
+	margin-top: 5px;
+	margin-right: -3px;
+}
+
+.paging-2-div .double-right-arrow {
+	float: left;
+	/*background: url("../images/double_right_arrow.png");*/
+	height: 14px;
+	width: 17px;
+	float: left;
+	margin-top: 5px;
+}
+
+.paging-2-div .right-arrow {
+	/*background: url("../images/right_arrow.png");*/
+	height: 14px;
+	width: 12px;
+	float: left;
+	margin-top: 5px;
+}
+
+.paging-2-div .left-arrow {
+	/*background: url("../images/left_arrow.png");*/
+	height: 14px;
+	width: 12px;
+	float: left;
+	margin-top: 5px;
+	/*margin-right: -3px;*/
+}
+
+.paging-2-div .paging-2-span {
+	float: left;
+	margin-top: 5px;
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.paging-2-div .start {
+	margin-right: 9px;
+}
+
+.paging-2-div .right-arrow {
+	margin-right: 8px;
+}
+
+.paging-2-div .page-label-span {
+	float: left;
+	margin-top: 5px;
+	margin-right: 7px;
+	margin-left: 12px;
+}
+
+.paging-selector {
+	float: left;
+	min-width: 30px;
+	width: 60px;
+	margin-right: 13px;
+	height: 23px;
+}
+
+.disable-filter {
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+
+	filter: grayscale(100%);
+	/*filter: url(gray.svg#grayscale);*/
+
+	filter: gray;
+	opacity: 0.5;
+}
+
+.separate {
+	float: left;
+	margin-top: 5px;
+}
+
+.separated-box {
+	height: 31px;
+	width: 100%;
+	background-color: #55718c;
+	text-align: center;
+}
+
+.separated-box .label {
+	color: #ffffff;
+	line-height: 30px;
+}
+
+.group-column-tr {
+	background: #375979;
+}
+
+.group-column-th {
+	border: 1px solid #ffffff;
+	border-left: 0;
+	border-top: 0;
+	width: auto;
+	text-align: center;
+}
+
+.group-column-label {
+	color: #ffffff;
+}
+
+.context-menu-icon-addIcon {
+	background-image: url("global/widgets/ribbon/icons/new_add-35x35.png");
+}
+
+.context-menu-icon-viewIcon, .context-menu-icon-viewHTMLIcon {
+	background-image: url("global/widgets/ribbon/icons/view-35x35.png");
+}
+
+.context-menu-icon-editIcon {
+	background-image: url("global/widgets/ribbon/icons/edit-35x35.png");
+}
+
+.context-menu-icon-massEditIcon {
+	background-image: url("global/widgets/ribbon/icons/mass_edit-35x35.png");
+}
+
+.context-menu-icon-deleteIcon {
+	background-image: url("global/widgets/ribbon/icons/delete-35x35.png");
+}
+
+.context-menu-icon-deleteAndNextIcon {
+	background-image: url("global/widgets/ribbon/icons/copy_as_new-35x35.png");
+}
+
+.context-menu-icon-saveIcon, .context-menu-icon-saveExistedReportIcon {
+	background-image: url("global/widgets/ribbon/icons/save-35x35.png");
+}
+
+.context-menu-icon-saveAndContinueIcon {
+	background-image: url("global/widgets/ribbon/icons/save_and_continue-35x35.png");
+}
+
+.context-menu-icon-saveAndNextIcon {
+	background-image: url("global/widgets/ribbon/icons/save_and_next-35x35.png");
+}
+
+.context-menu-icon-saveAndCopyIcon {
+	background-image: url("global/widgets/ribbon/icons/save_and_copy-35x35.png");
+}
+
+.context-menu-icon-saveAndNewIcon, .context-menu-icon-saveNewReportIcon {
+	background-image: url("global/widgets/ribbon/icons/save_and_new-35x35.png");
+}
+
+.context-menu-icon-cancelIcon {
+	background-image: url("global/widgets/ribbon/icons/cancel-35x35.png");
+}
+
+.context-menu-icon-moveIcon {
+	background-image: url("global/widgets/ribbon/icons/move-35x35.png");
+}
+
+.context-menu-icon-copyAsNewIcon {
+	background-image: url("global/widgets/ribbon/icons/copy_as_new-35x35.png");
+}
+
+.context-menu-icon-copyIcon {
+	background-image: url("global/widgets/ribbon/icons/copy-35x35.png");
+}
+
+.context-menu-icon-viewDetailIcon {
+	background-image: url("global/widgets/ribbon/icons/view_detail-35x35.png");
+}
+
+.context-menu-icon-addAbsenceIcon, .context-menu-icon-addPunchIcon {
+	background-image: url("global/widgets/ribbon/icons/new_add-35x35.png");
+}
+
+.context-menu-icon-dragCopyIcon {
+	background-image: url("global/widgets/ribbon/icons/copy-35x35.png");
+}
+
+.context-menu-icon-editEmployeeIcon {
+	background-image: url("global/widgets/ribbon/icons/employees-35x35.png");
+}
+
+.context-menu-icon-scheduleIcon {
+	background-image: url("global/widgets/ribbon/icons/schedule-35x35.png");
+}
+
+.context-menu-icon-recurringTemplateIcon, .context-menu-icon-recurringSchedule {
+	background-image: url("global/widgets/ribbon/icons/recurring_schedule-35x35.png");
+}
+
+.context-menu-icon-inOutIcon, .context-menu-icon-AutoPunch {
+	background-image: url("global/widgets/ribbon/icons/clock_in_out-35x35.png");
+}
+
+.context-menu-icon-accumulatedTimeIcon {
+	background-image: url("global/widgets/ribbon/icons/timesheet-35x35.png");
+}
+
+.context-menu-icon-AddRequest {
+	background-image: url("global/widgets/ribbon/icons/requests-35x35.png");
+}
+
+.context-menu-icon-jobInvoiceIcon {
+	background-image: url("global/widgets/ribbon/icons/invoice_wizard-35x35.png");
+}
+
+.context-menu-icon-shareReportIcon {
+	background-image: url("global/widgets/ribbon/icons/copy_as_new-35x35.png");
+}
+
+.context-menu-icon-PayStubIcon {
+	background-image: url("global/widgets/ribbon/icons/pay_stubs-35x35.png");
+}
+
+.context-menu-icon-payStubAmendmentIcon {
+	background-image: url("global/widgets/ribbon/icons/pay_stub_amendments-35x35.png");
+}
+
+.context-menu-icon-PayStubTransactionIcon, .context-menu-icon-directDepositIcon {
+	background-image: url("global/widgets/ribbon/icons/direct_deposit-35x35.png");
+}
+
+.context-menu-icon-employeePayStubsIcon, .context-menu-icon-employerPayStubsIcon {
+	background-image: url("global/widgets/ribbon/icons/pay_stubs-35x35.png");
+}
+
+.context-menu-icon-EditPayPeriodIcon {
+	background-image: url("global/widgets/ribbon/icons/pay_periods-35x35.png");
+}
+
+.context-menu-icon-ReCalculateTimeSheet {
+	background-image: url("global/widgets/ribbon/icons/calculate-35x35.png");
+}
+
+.context-menu-icon-GeneratePayStub {
+	background-image: url("global/widgets/ribbon/icons/calculate_paystubs-35x35.png");
+}
+
+.context-menu-icon-importIcon {
+	background-image: url("global/widgets/ribbon/icons/import-35x35.png");
+}
+
+.context-menu-icon-exportExcelIcon {
+	background-image: url("global/widgets/ribbon/icons/export_to_excel-35x35.png");
+}
+
+.context-menu-icon-PaymentIcon {
+	background-image: url("global/widgets/ribbon/icons/payment_methods-35x35.png");
+}
+
+.context-menu-icon-PackingSlipIcon {
+	background-image: url("global/widgets/ribbon/icons/packing_slip-35x35.png");
+}
+
+.context-menu-icon-editClientIcon {
+	background-image: url("global/widgets/ribbon/icons/clients-35x35.png");
+}
+
+.context-menu-icon-clientContactIcon {
+	background-image: url("global/widgets/ribbon/icons/clients_contacts-35x35.png");
+}
+
+.context-menu-icon-transactionIcon {
+	background-image: url("global/widgets/ribbon/icons/transactions-35x35.png");
+}
+
+.context-menu-icon-paymentMethodIcon {
+	background-image: url("global/widgets/ribbon/icons/payment_methods-35x35.png");
+}
+
+.context-menu-icon-swapIcon {
+	background-image: url("global/widgets/ribbon/icons/swap_shift-35x35.png");
+}
+
+.context-menu-icon-overrideIcon {
+	background-image: url("global/widgets/ribbon/icons/override-35x35.png");
+}
+
+.context-menu-icon-timesheetIcon {
+	background-image: url("global/widgets/ribbon/icons/timesheet-35x35.png");
+}
+
+.context-menu-icon-EditPayPeriodScheduleIcon {
+	background-image: url("global/widgets/ribbon/icons/pay_period_schedules-35x35.png");
+}
+
+.context-menu-icon-findAvailableIcon {
+	background-image: url("global/widgets/ribbon/icons/fillshift-35x35.png");
+}
+
+.context-menu-icon-printIcon {
+	background-image: url("global/widgets/ribbon/icons/print-35x35.png");
+}
+
+.context-menu-icon-mapIcon {
+	background-image: url("global/widgets/ribbon/icons/map-35x35.png");
+}
+
+.disable-element {
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+
+	filter: grayscale(100%);
+	/*filter: url(gray.svg#grayscale);*/
+
+	filter: gray;
+}
+
+.job-coder {
+	width: 50px !important;
+	margin-right: 5px;
+}
+
+.red {
+	color: #ae0000 !important;
+}
+
+.yellow-outline {
+	border: 1px solid #fff000;
+}
+
+.red-bg {
+	background: #ae0000 !important;
+	color: #ffffff !important;
+}
+
+.drag-holder-div {
+	background: #ae0000;
+	padding: 5px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1000;
+
+}
+
+.drag-span {
+	display: block;
+	color: #ffffff;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+
+}
+
+.drag-over-top {
+	background: url("../images/cell_hover.png") repeat-x !important;
+	background-size: 100px 3px !important;
+}
+
+.drag-over-top th {
+	background: none !important;
+}
+
+.drag-over-center {
+	background: #de5a5a;
+}
+
+.drag-over-bottom {
+	background: url("../images/cell_hover.png") repeat-x !important;
+	background-position: bottom !important;
+	background-size: 100px 3px !important;
+}
+
+.drag-over-bottom th {
+	background: none !important;
+}
+
+.inside-editor-div {
+	float: left;
+
+}
+
+.manual-timesheet-inside-editor-div.inside-editor-div {
+	float: none;
+}
+
+.manual-timesheet-inside-editor-div .inside-editor .render-div {
+	margin-top: 0;
+}
+
+.manual-timesheet-inside-editor-div {
+	width: 100%;
+}
+
+.manual-timesheet-inside-editor-div .inside-editor {
+	height: 100%
+}
+
+.manual-timesheet-inside-editor-div .inside-editor .render-div {
+	overflow: hidden;
+	height: 100%;
+}
+
+.manual-timesheet-inside-editor-div .grid-inside-editor-render td:first-child {
+	border-right: none;
+}
+
+.wizard-inside-editor-div {
+	float: left;
+}
+
+.plus-icon {
+	background-image: url("../images/add.png");
+	background-position: 0 0;
+	border: medium none;
+	cursor: pointer;
+	height: 18px;
+	padding: 0;
+	width: 18px;
+	background-color: #eaeaea;
+	border-radius: 20px;
+}
+
+.minus-icon {
+	background-image: url("../images/minus.png");
+	background-position: 0 0;
+	border: medium none;
+	cursor: pointer;
+	height: 18px;
+	padding: 0;
+	width: 18px;
+	background-color: #eaeaea;
+	border-radius: 20px;
+}
+
+.policy-not-in-use, .grid-div .ui-jqgrid-jquery-ui .ui-priority-secondary.policy-not-in-use:not(.ui-state-highlight) {
+	background: #fff000;
+}
+
+.user-data-total-override {
+	color: red !important;
+}
+
+.cbox {
+	height: 100%;
+	width: 17px;
+	text-align: left;
+	padding: 0;
+}
+
+.edit-view .sub-view-title {
+	display:none; /* No need for sub-view-title now. The dynamic context-border is already being applied and serves the same purpose, but globally. */
+    /*font-weight: bold;*/
+	/*text-align: center;*/
+	/*margin-top: 10px;*/
+	/*margin-bottom: 10px;*/
+    /*position: absolute;*/
+    /*top: -11px;*/
+    /*left: 20px;*/
+    /*background-color: #eaeaea;*/
+    /*padding: 5px;*/
+}
+/*.edit-view .grid-outline {*/
+/*    padding-top: 10px; !* Needed to leave space for the absolutely positioned sub-view-title *!*/
+/*}*/
+
+.inside-total-data-editor-div {
+	float: left;
+	width: 90%;
+}
+
+.total-data-editor {
+	float: right;
+	width: 250px;
+	height: auto;
+	border: 1px solid #c7c7c7;
+	border-radius: 4px;
+}
+
+.total-data-row {
+	list-style: none;
+	margin: 2px 0;
+	padding: 0;
+	width: 100%;
+	float: left;
+}
+
+.total-data-label {
+	float: left;
+	width: 50%;
+	text-align: right;
+	font-weight: bold;
+}
+
+.total-data-value {
+	float: left;
+	width: 40%;
+	text-align: right;
+}
+
+.inside-transaction-history-div {
+	float: left;
+	width: 90%;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.inside-custom-style {
+	border: 1px solid #c7c7c7;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.qtip-contentWrapper {
+	border-radius: 4px;
+	font-size: 11px;
+}
+
+.tblDataWarning {
+	background-color: #ffff00;
+	color: #000000;
+	padding: 5px;
+	text-align: center;
+}
+
+.tblDataWarning a, .tblDataWarning a:link, .tblDataWarning a:visited, .tblDataWarning a:hover, .tblDataWarning a:active {
+	color: #336699;
+	text-decoration: underline;
+}
+
+.formula-builder {
+
+}
+
+.formula-builder .formula-textarea {
+	float: left;
+}
+
+.formula-builder .formula-btn {
+	float: left;
+}
+
+.balance_icon {
+	float: left;
+	cursor: pointer;
+}
+
+.schedule-view-balance-info {
+	border: 1px solid #cccccc;
+	float: left;
+	left: 65px;
+	position: absolute;
+	top: 10px;
+	z-index: 99999;
+	width: 300px;
+	background: none repeat scroll 0 0 #ffffce;
+	display: none;
+}
+
+.schedule-view-balance-info table {
+	width: 100%;
+}
+
+.notification-box {
+	background: none repeat scroll 0 0 #cccccc;
+	border: 1px solid #999999;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	left: 0;
+	margin-left: auto;
+	margin-right: auto;
+	position: fixed;
+	right: 0;
+	top: 0;
+	text-align: center;
+	width: 100%;
+}
+
+.notification-box .row-box {
+}
+
+.notification-box .button-box {
+	position: relative;
+	height: 15px;
+}
+
+.notification-box .notification-row {
+	text-align: center;
+	padding-bottom: 1px;
+	padding-top: 1px;
+	border-top: 1px solid #666666;
+	position: relative;
+	width: 100%;
+
+}
+
+.notification-box .notification-row span {
+	width: auto;
+}
+
+.notification-box .notification-row .close-btn {
+	background: url("../images/close.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border: medium none;
+	cursor: pointer;
+	height: 12px;
+	right: 2px;
+	position: absolute;
+	top: 2px;
+	width: 12px;
+	padding: 0;
+}
+
+.notification-box .up-btn {
+	background: url("../images/collapse.png") no-repeat;
+	border: medium none;
+	cursor: pointer;
+	height: 15px;
+	width: 32px;
+	position: absolute;
+	left: 50%;
+}
+
+.notification-box .down-btn {
+	background: url("../images/expand.png") no-repeat;
+	border: medium none;
+	cursor: pointer;
+	height: 15px;
+	width: 32px;
+	position: absolute;
+	left: 50%;
+}
+
+.browser-banner {
+	background: none repeat scroll 0 0 #cccccc;
+	border: 1px solid #999999;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	left: 0;
+	height: 100px;
+	line-height: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: center;
+	width: 100%;
+	background: red;
+	vertical-align: middle
+}
+
+.browser-banner .label {
+	color: black;
+	font-size: 22px;
+}
+
+.browser-banner a {
+
+}
+
+.t-image {
+	max-width: 200px;
+	max-height: 200px;
+}
+
+/*Recurring Template*/
+.recurring-template-status-div {
+	text-align: left;
+	position: relative;
+}
+
+.recurring-template-widget-right-label {
+	vertical-align: super;
+}
+
+.recurring-template-widget-h-box {
+	text-align: left;
+}
+
+/*Request*/
+
+.bolder-request td {
+	font-weight: bold !important;
+}
+
+.red-absence td {
+	color: #ae0000;
+}
+
+.light-green {
+	background: lightgreen !important;
+}
+
+.light-red {
+	background: indianred !important;
+}
+
+.audit-info {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+}
+
+.audit-info .label-div {
+	height: 28px;
+	float: left;
+	/*margin-right: 10px;*/
+	/*border-right: 2px solid #ae0000;*/
+	/*background: none repeat scroll 0 0 #375a7c;*/
+}
+
+.audit-info .label-div .label {
+	color: #000;
+	float: right;
+	margin-left: 5px;
+	min-width: 135px;
+	padding-right: 7px;
+	text-align: right;
+}
+
+.audit-info .info {
+	height: 30px;
+	float: left;
+}
+
+.audit-info .left {
+	float: left;
+	width: 48%;
+	height: 30px;
+	border: 1px solid #aaaaaa;
+}
+
+.audit-info .right {
+	float: right;
+	width: 48%;
+	height: 30px;
+	border: 1px solid #aaaaaa;
+}
+
+.home-view {
+
+}
+
+.home-view .container {
+	height: 92%;
+	overflow: auto;
+	overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.home-view .ribbon-button-bar {
+	padding: 5px;
+}
+
+.home-view .dashboard-container {
+
+}
+
+.home-view .add-dashlet-btn {
+	margin: 10px;
+}
+
+.home-view .sortable-placeholder {
+}
+
+.dashlet-container {
+	float: left;
+	padding: 5px;
+	box-sizing: border-box;
+	min-width: 200px;
+	min-height: 120px;
+	max-width: calc(100% - 5px);
+
+}
+
+.ui-resizable-n {
+	top: 0px; /* To cancel out the 5px padding applied to .dashlet-container */
+}
+
+.ui-resizable-e {
+	right: 0; /* To cancel out the 5px padding applied to .dashlet-container */
+}
+
+.ui-resizable-s {
+	bottom: 0; /* To cancel out the 5px padding applied to .dashlet-container */
+}
+
+.ui-resizable-w {
+	left: 0; /* To cancel out the 5px padding applied to .dashlet-container */
+}
+
+.ui-resizable-se.ui-icon-gripsmall-diagonal-se {
+	background-position: -65px -225px;
+}
+
+.ui-sortable-helper {
+	opacity: 0.5;
+	z-index: 50;
+}
+
+
+.dashlet {
+	box-sizing: border-box;
+	background-color: #f8f8f8;
+	border-bottom: 2px solid #32689b;
+	border-top: 30px solid #32689b;
+	border-left: 2px solid #32689b;
+	border-right: 2px solid #32689b;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 4px;
+	position: relative;
+	height: 100%;
+}
+
+.dashlet .title {
+	color: #ffffff;
+	font-size: 12px;
+	left: 7px;
+	position: absolute;
+	top: -22px;
+}
+
+.dashlet .content {
+	height: 100%;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	overflow-y: hidden;
+}
+
+.dashlet-container.news .dashlet .content .report-iframe {
+	height: 98%;
+}
+
+.dashlet .button-bar {
+	position: absolute;
+	top: -24px;
+	right: 5px;
+}
+
+.dashlet .button-bar .button {
+	background-color: #1b3e60;
+	border: 1px solid #6687a6;
+	border-radius: 4px;
+	color: #ffffff;
+	font-size: 10px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.dashlet .report-iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+	background-color: #ffffff;
+	border-radius: inherit;
+}
+
+.dashlet .report-iframe-block {
+	pointer-events: none;
+}
+
+.dashlet .tticon {
+    color: #fff;
+    margin-left: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.dashlet .dashlet-left-cover {
+
+}
+
+.dashlet-left-cover.dashlet-cover--display-red {
+	position: absolute;
+	width: 50%;
+	top: 6px;
+	left: 6px;
+	background: indianred;
+	opacity: 0.5;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	bottom: 6px;
+}
+
+.dashlet-left-cover.dashlet-cover--display-green {
+	position: absolute;
+	width: 50%;
+	top: 6px;
+	left: 6px;
+	background: forestgreen;
+	opacity: 0.5;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	bottom: 6px;
+}
+
+.dashlet .dashlet-right-cover {
+
+}
+
+.dashlet .total,
+.TimeSheetAuthorizationEditView .total {
+	float: left;
+	width: 100%;
+	font-weight: bold;
+}
+
+.dashlet .punch-content-div,
+.TimeSheetAuthorizationEditView .punch-content-div {
+	text-align: center;
+	cursor: default;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin-left: -2px;
+	padding-right: 2px;
+}
+
+.dashlet .punch-content-div span,
+.TimeSheetAuthorizationEditView .punch-content-div span {
+	display: inline-block;
+	margin-top: 4px;
+}
+
+.dashlet .top-line-span,
+.TimeSheetAuthorizationEditView .top-line-span {
+	border-top: 2px solid #333333;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding-top: 3px;
+}
+
+.dashlet .top-line,
+.TimeSheetAuthorizationEditView .top-line {
+	border-top: 2px solid #333333;
+
+}
+
+.TimeSheetAuthorizationEditView .third-column,
+.TimeSheetAuthorizationEditView .forth-column {
+	float: left;
+	width: calc(50% - 15px);
+	margin-bottom: 5px;
+}
+
+.TimeSheetAuthorizationEditView .third-column {
+	margin-right: 25px;
+}
+
+.dashlet-right-cover.dashlet-cover--display-red {
+	position: absolute;
+	width: 50%;
+	top: 6px;
+	right: 6px;
+	background: indianred;
+	opacity: 0.5;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	bottom: 6px;
+}
+
+.dashlet-right-cover.dashlet-cover--display-green {
+	position: absolute;
+	width: 50%;
+	top: 6px;
+	right: 6px;
+	opacity: 0.5;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	bottom: 6px;
+	background: forestgreen;
+}
+
+@-webkit-keyframes rotateAnimation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotateAnimation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.button-rotate {
+	animation-name: rotateAnimation;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	-webkit-animation-name: rotateAnimation;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.UserDateTotalView {
+	text-align: center;
+}
+
+.user-date-total-view .warning-message {
+	background: yellow;
+	padding: 5px;
+	display: block;
+	font-weight: bold;
+}
+
+/*Use default cursor for grid cells*/
+.ui-jqgrid tr.jqgrow > td {
+	cursor: default;
+}
+
+.upload-image-alert {
+	line-height: 25px;
+}
+
+.accumulated-total-grid-title {
+	background: #375979;
+	color: #ffffff;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	width: calc(100% - 1px);
+}
+
+.t-alert, .confirm-alert {
+	background-color: #f8f8f8;
+	border-bottom: 2px solid #32689b;
+	border-top: 30px solid #32689b;
+	border-left: 2px solid #32689b;
+	border-right: 2px solid #32689b;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin: -130px 0 0 -130px;
+	height: auto;
+	width: 390px;
+	font-size: 12px;
+	text-align: center;
+    user-select: text;
+	z-index: 6001;
+	border-radius: 4px;
+	padding: 10px;
+	padding-bottom: 30px;
+	box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.3), 0 0 60px 5px rgba(0, 0, 0, 0.38);
+}
+
+.t-alert .content-div,
+.confirm-alert .content-div {
+	min-height: 100px;
+	max-height: 200px;
+	overflow: auto;
+}
+
+.t-alert .title,
+.confirm-alert .title {
+	color: #ffffff;
+	position: absolute;
+	top: -21px;
+	left: 5px;
+	font-size: 12px;
+}
+
+.t-alert .content,
+.confirm-alert .content {
+	font-size: 12px;
+}
+
+.t-alert .bottom-bar,
+.confirm-alert .bottom-bar {
+	position: absolute;
+	height: 30px;
+	border: none;
+	bottom: 0;
+	width: 100%;
+}
+
+.t-alert .button {
+	/*position: relative;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #c6c4c4), color-stop(0, #ffffff));
+	background: -moz-linear-gradient(center top, #ffffff, #c6c4c4);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#c6c4c4');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff, endColorstr='#c6c4c4)";
+
+	border-radius: 4px;
+	border: none;
+	color: #333333;
+	font-family: arial;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 2px 6px;
+	text-decoration: none;
+}
+
+.t-alert .button:hover {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1, #f6f6f6), color-stop(1, #c6c4c4));
+	background: -moz-linear-gradient(center top, #c6c4c4, #f6f6f6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c6c4c4', endColorstr='#f6f6f6');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#c6c4c4, endColorstr='#f6f6f6)";
+}
+
+.confirm-alert ol {
+	text-align: left;
+}
+
+.confirm-alert .button {
+	margin-right: 10px;
+}
+
+.session-alert {
+	position: fixed;
+	width: 200px;
+	height: 30px;
+	text-align: center;
+	bottom: 3px;
+	right: 0;
+	left: 0;
+	margin-left: auto;
+	margin-right: auto;
+	background: url("../images/50_bg.png") repeat;
+	cursor: default;
+	z-index: 100;
+
+}
+
+.session-alert .content {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 30px;
+}
+
+.session-alert .close-icon {
+	cursor: pointer;
+	font-size: 10px;
+	position: absolute;
+	right: 7px;
+	top: 3px;
+	color: #ffffff;
+
+}
+
+.modal-alert {
+	background: rgba(0,0,0,.6);
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.modal-alert-content {
+	background-color: #f8f8f8;
+	height: 30rem;
+	width: 26rem;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -15rem;
+	margin-left: -13rem;
+	box-shadow: 5px 5px 8px 0px rgba(0, 0, 0, 0.3), 0 0 60px 5px rgba(0, 0, 0, 0.38);
+}
+
+.modal-alert-close {
+	font-size: 1.5rem;
+	position: absolute;
+	right: 0;
+	margin: .75rem;
+	cursor: pointer
+}
+
+.permission-button-yes {
+	color: #fff;
+	border: 0 solid #a1a3a6;
+	width: 17rem;
+	font-size: 1.15rem;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+	height: 3.25rem;
+	position: absolute;
+	left: 4.5rem;
+	bottom: .5rem;
+	text-decoration: none;
+	font-weight: 1000;
+}
+
+.modal-alert-image {
+	display: block;
+	margin: 25px auto 15px auto;
+	width: 80px;
+	height: 80px;
+}
+
+.modal-alert-title {
+	text-align: center;
+	font-weight: 1000;
+    margin: 0px;
+    padding: 3px 2rem;
+}
+
+.modal-alert-body {
+	text-align: center;
+	height: 13rem;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	font-size: 1.2rem;
+}
+
+.permission-arrow {
+	position: absolute;
+	width: 170px;
+	height: 170px;
+	top: 2px;
+	left: 3%;
+	z-index: 10;
+	animation: fadeinout 2s linear 1 forwards;
+	animation-iteration-count: infinite;
+}
+
+@keyframes fadeinout {
+	0% { opacity: 0.25; }
+	50% { opacity: 1; }
+	100% { opacity: 0.25; }
+}
+
+.SearchPanel-displayColumns-label {
+	margin-bottom: 10px;
+}
+
+.signal-strength {
+	height: 25px;
+    width: 31px;
+	list-style: none;
+	overflow: hidden;
+	float: left;
+	margin: 0;
+	padding: 0;
+	margin-top: 4px;
+	margin-right: 5px;
+	display: none;
+	cursor: pointer;
+	border: 1px solid #32689b;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 3px;
+	padding-right: 2px;
+	border-radius: 4px;
+	position: relative;
+}
+
+.signal-strength li {
+	display: inline-block;
+	width: 5px;
+	float: left;
+	height: 100%;
+	margin-right: 1px;
+	box-sizing: border-box;
+
+}
+
+.signal-strength-pretty-strong {
+	padding-top: 0;
+}
+
+.signal-strength-strong {
+	padding-top: 5px;
+}
+
+.signal-strength-weak {
+	padding-top: 10px;
+}
+
+.signal-strength-very-weak {
+	padding-top: 15px;
+}
+
+.signal-strength li div {
+	height: 100%;
+	background: #32689b;
+}
+
+.signal-strength-empty div {
+	background: #aaaaaa !important;
+}
+
+.employee-email-icon {
+	vertical-align: middle;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.tt-liveChat {
+	border: 1px solid #32689b;
+	border-radius: 4px;
+	position: relative;
+	color: #4a4a4a;
+	padding-left: 15px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 40px;
+	background-color: #ffffff;
+	display: inline-block;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.tt-liveChat:after {
+	background: url("../images/live_chat.png");
+	width: 18px;
+	height: 15px;
+	background-size: 18px 15px;
+	display: inline-block;
+	content: "";
+	position: absolute;
+	right: 10px;
+}
+
+.top-container-liveChat {
+	position: absolute;
+	top: 3px;
+	right: 186px;
+}
+
+#nano-bar {
+	top: 50px !important;
+}
+
+.google-map {
+	height: calc(100% - 20px);
+	width: 100% !important;
+}
+
+.google-map-full {
+	height: 100%;
+	width: 100% !important;
+}
+
+#map_container {
+	height: calc(100% - 90px);
+	width: 100%;
+}
+
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+	background-color: #ffffff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 300px;
+    position: absolute;
+    left: 70px;
+    z-index: 9999;
+    border: 1px solid #dddddd;
+}
+
+#tab_geo_fence #pac-input {
+    top: 211px;
+}
+
+#suggestion-box {
+    position: absolute;
+    top: 245px;
+    left: 81px;
+    z-index: 9999;
+    border: 1px solid #dddddd;
+    display: none;
+}
+
+#tab_map #suggestion-box {
+    top: 141px;
+}
+
+.distance_popup .leaflet-popup-content-wrapper, .distance_popup .leaflet-popup-tip {
+    background: #3baae3;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+}
+
+.pac-container {
+	font-family: Roboto;
+}
+
+.t-color-picker, .cp-HEX {
+	max-width: 50%;
+}
+
+table tbody tr.flashBackground {
+	animation-name: flashBackground;
+	animation-duration: 2.5s;
+	-webkit-animation-name: flashBackground; /* Chrome, Safari, Opera */
+	-webkit-animation-duration: 2.5s; /* Chrome, Safari, Opera */
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes flashBackground {
+	0% {
+		background: none;
+	}
+	20% {
+		background: green;
+	}
+	40% {
+		background: none;
+	}
+	80% {
+		background: green;
+	}
+	100% {
+        /* No background set so that other classes such as ui-state-highlight are shown when animation is complete */
+	}
+}
+
+/* Standard syntax */
+@keyframes flashBackground {
+	0% {
+		background: none;
+	}
+	20% {
+		background: green;
+	}
+	40% {
+		background: none;
+	}
+	80% {
+		background: green;
+	}
+	100% {
+        /* No background set so that other classes such as ui-state-highlight are shown when animation is complete */
+	}
+}
+
+/* TinyMCE customized styles */
+.tox:not([dir=rtl]) tox-tinymce {
+    background: #ffffff;
+    padding: 3px;
+    overflow: auto;
+    border-radius: 0px;
+    outline: none;
+    vertical-align: middle;
+    border: 1px solid rgb(211, 204, 204);
+    box-shadow: none;
+}
+.tox:not(.tox-tinymce-inline) .tox-editor-header {
+    box-shadow: none !important;
+}
+
+.UNIT_TEST_MODE * {
+	font-smooth: never;
+	-webkit-font-smoothing: none;
+	image-rendering: pixelated;
+    animation: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+}
+
+.UNIT_TEST_MODE .notification-box {
+	display: none;
+}
+
+.job-vacancy-summary-description .edit-view-form-item-label-div {
+	border-radius: 0 !important;
+}
+
+.payroll_remittance_agency_event_wizard_event_details .label {
+	font-weight: bolder;
+	text-align: right;
+}
+
+.payroll_remittance_agency_event_wizard_event_details table .label.col2 {
+	padding-left: 10pt;
+}
+
+.payroll_remittance_agency_event_wizard_event_details table .value {
+	text-align: left;
+}
+
+.payroll_remittance_agency_event_wizard_event_details table {
+	margin: 0 auto;
+	border: 1px solid #000000;
+	padding: 10pt;
+	margin-bottom: 15pt;
+}
+
+.tax_wizard #cards {
+	margin-bottom: 5pt;
+}
+
+.tax_wizard .wizard_icon_card {
+	display: block;
+	border: 1px solid #000000;
+	text-align: left;
+	clear: both;
+	cursor: pointer;
+	background: #ffffff;
+	padding-left: 15pt;
+	margin: 10pt;
+	margin-top: 0;
+	margin-bottom: 5pt;
+	padding-bottom: 8pt;
+	min-height: 50pt;
+}
+
+.tax_wizard .wizard_icon_card img {
+	margin-left: 0;
+	margin-right: 10pt;
+	display: inline-block;
+	position: relative;
+	top: -13px;
+}
+
+.tax_wizard .description {
+	font-size: 14px;
+}
+
+
+.tax_wizard .instructions {
+	font-weight: bolder;
+}
+
+.tax_wizard .wizard_icon_card .button_title {
+	display: block;
+	color: #000000;
+	font-size: 1.17em;
+	font-size: 1.17em;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	font-weight: bold;
+}
+
+.tax_wizard .wizard_icon_card div {
+	text-align: left;
+}
+
+.tax_wizard .wizard_icon_card .right_container {
+	margin-left: 10pt;
+	display: inline-block;
+	max-width: 650pt;
+}
+
+.wizard_icon_card.clicked_wizard_icon {
+	border: 1px dashed #cccccc;
+}
+
+.wizard #cards {
+	border: none;
+}
+
+.ui-widget-content {
+	border: 1px solid #cccccc;
+}
+
+
+table {
+	border-spacing: 0;
+}
+
+.ui-jqgrid td {
+	text-align: left;
+	font-weight: normal;
+	overflow: hidden;
+	white-space: pre;
+	height: 22px;
+	padding: 0px;
+}
+
+th.ui-th-column div {
+	padding: 3px !important;
+}
+
+.ui-jqgrid th:first {
+	width: 22px;
+}
+
+.ui-jqgrid .ui-jqgrid-hdiv {
+	border-radius: 0 !important;
+}
+
+/**
+ part of the hack to hide the extra junk on the right side of the grid.
+ */
+
+.ui-jqgrid {
+	max-width: 100%;
+	overflow-x: visible;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: none !important;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv {
+	overflow-x: hidden;
+	background: #fefefe;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th div {
+	overflow: visible;
+}
+
+.sandbox_container .layout-container .tt-top .topbar {
+	background-color: red;
+}
+
+.top-container .ui-state-active, .top-container .ui-widget-content .ui-state-active {
+	border-bottom: none;
+}
+
+.top-container .ui-state-active, .top-container .ui-widget-content .ui-state-active.context-menu {
+	border: 1px solid #cccccc;
+	background: #d8e7f4 !important;
+	border-bottom: none;
+	height: 25px;
+}
+
+.top-container .ui-state-active, .top-container .ui-widget-content .ui-state-active.context-menu a {
+	color: #204175;
+}
+
+
+/* #2353 - re-instating jquery-ui deprecated css. */
+.ui-tabs-hide {
+	display: none;
+}
+
+#tab_pay_stub .t-text-input-readonly {
+	background-color: #ffffff;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+	border: none;
+	outline: none;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+	background: #99e6ff 50% top repeat-x; /* This was previously marked as !important which would override .flashBackground */
+	border: none;
+	color: #000000;
+}
+
+table tbody tr.ui-priority-secondary.ui-state-highlight {
+    background: #99e6ff 50% top repeat-x; /* This was previously marked as !important which would override .flashBackground */
+    color: #000000;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight td {
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}
+
+.wizard.process_transactions_wizard {
+	min-width: 550pt;
+	width: fit-content;
+	font-size: 14px;
+	display: none;
+}
+
+#process_transactions_wizard_source_account_table {
+	margin: 0 auto;
+	text-align: left;
+}
+
+
+#process_transactions_wizard_source_account_table th {
+	text-align: center;
+}
+
+#process_transactions_wizard_source_account_table td {
+	font-weight: normal;
+	padding-right: 10pt;
+	padding-left: 3pt;
+}
+
+#process_transactions_wizard_source_account_table td input {
+	text-align: right;
+}
+
+.wizard.process_transactions_wizard .progress-bar {
+	display: none;
+}
+
+.wizard.process_transactions_wizard .confirm-buttons-div {
+	position: relative;
+	right: auto;
+}
+
+.wizard.process_transactions_wizard input[type="text"] {
+	width: 100px;
+	border: 1px solid #aaaaaa;
+	font-size: 14px;
+}
+
+.process_transactions_wizard .content {
+	width: 100%;
+	height: calc(100% - 92px) !important; /* 92= 50+7+27 (btns&downloadtxt) +8 (tblcontenttop) */
+	overflow-y: auto;
+	overflow-x: hidden;
+	border: #444444;
+	top: 8px !important;
+}
+
+.process_transactions_wizard {
+	height: 300px !important;
+	width: 400px !important;
+}
+
+.process_transactions_wizard .bottom-actions {
+	bottom: 10px !important;
+}
+
+.process_transactions_wizard .download_warning {
+	position: absolute;
+	bottom: 50px;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 7px;
+	height: 27px;
+}
+
+.process_transactions_wizard .download_warning button {
+	height: 22px;
+	width: 22px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+/**
+#2353 - fix black borders appearing in grid when cells are selected
+ */
+
+.ui-jqgrid :focus,
+.ui-jqgrid .ui-state-active,
+.ui-jqgrid .ui-widget-content .ui-state-active,
+.ui-jqgrid .ui-widget-header .ui-state-active,
+.ui-jqgrid a.ui-button:active,
+.ui-jqgrid .ui-button:active,
+.ui-jqgrid .ui-button.ui-state-active:hover {
+	border-right-color: #dddddd !important;
+	border-left-color: #dddddd !important;
+	border-top-color: #dddddd !important;
+	border-bottom-color: #dddddd !important;
+}
+
+
+/*.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight td {*/
+/*border: 1px solid #ddd !important;*/
+/*border-top: none !important;*/
+/*border-left: none !important;*/
+/*}*/
+
+.ui-widget-header {
+	border: 1px solid #aed0ea;
+	background: #deedf7 url(jquery-ui/images/ui-bg_highlight-soft_100_deedf7_1x100.png) 50% 50% repeat-x;
+	color: #222222;
+	font-weight: bold;
+}
+
+.ui-widget-content {
+	border: 1px solid #dddddd;
+	/*background: #f2f5f7 url(jquery-ui/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png) 50% top repeat-x;*/
+	color: #3b3b3b;
+}
+
+.ui-widget-header .ui-icon {
+	background-image: url(jquery-ui/images/ui-icons_72a7cf_256x240.png);
+}
+
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
+	opacity: 1;
+	filter: none;
+	background: #f4f4f4;
+}
+
+#tab_map {
+	overflow: hidden;
+}
+
+
+.ui-jqgrid-resize-mark {
+	position: absolute;
+	width: 2px;
+	left: 0;
+	background: #777777;
+	cursor: e-resize;
+	cursor: col-resize;
+	position: absolute;
+	top: 0;
+	height: 22px;
+	overflow: hidden;
+	display: none;
+	border: 0 none;
+	z-index: 99999;
+}
+
+.container {
+	max-width: 100% !important;
+}
+
+.jqgfirstrow td {
+	border: 0px !important;
+}
+
+.progress-bar {
+	color: #000000;
+	background-color: transparent;
+}
+
+
+progress::-ms-fill {
+	border: none;
+}
+
+progress::-ms-fill {
+	background-color: lightskyblue;
+}
+
+.grid-div .ui-jqgrid {
+	overflow-x: auto;
+}
+
+.ui-jqgrid .td_cbox, .ui-jqgrid .jqgh_cbox {
+	vertical-align: middle;
+	text-align: center;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	/*border-left: 1px solid #ccc;*/
+}
+
+input[type="checkbox"]:not(.p-checkbox-input) {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	color: #fafafa;
+	border: 1px solid #666666;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+	height: 16px;
+	width: 16px;
+	text-align: center;
+	font-size: 14px;
+}
+
+input[type="checkbox"]:after {
+	content: '\2713'; /* When using \2714 (heavy check mark), it breaks Android Samsung devices running Chrome, and causes them to show all checkboxes as checked. */
+}
+
+input[type="checkbox"]:checked {
+	color: #000000;
+}
+
+input[type="checkbox"]:focus {
+	outline: 0;
+}
+
+.ui-state-hover {
+	background: #e1eef9 !important;
+}
+
+tr.ui-state-hover.ui-state-highlight, tr.ui-state-hover td {
+	background: #ccf2ff !important;
+	z-index: 999999;
+}
+
+th.ui-state-hover {
+	color: #375979 !important;
+}
+
+.t-grid-header-sort-icon {
+	padding: 0px;
+	position: relative;
+	left: 2px;
+}
+
+.nanobar {
+	width: 100%;
+	height: 4px;
+	z-index: 9999;
+	top: 0
+}
+
+.bar {
+	width: 0;
+	height: 100%;
+	transition: height .3s;
+	background: red;
+}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+	width: 46%;
+}
+
+.EmployeeEditView #tab_qualifications.edit-view-tab-outside-sub-view,
+.JobApplicantEditView #tab_qualifications.edit-view-tab-outside-sub-view,
+.JobApplicantEditView #tab_history.edit-view-tab-outside-sub-view {
+	/* padding: 0 !important; */
+	overflow-y: auto;
+}
+
+.timesheet-authorization-summary-title {
+	width: calc(100% - 1px) !important;
+}
+
+.request_edit_view_effective_days {
+	height: 32px;
+}
+
+th.ui-th-column div.day_hour_div {
+	padding: 0px !important;
+}
+
+.ui-jqgrid-view th {
+	cursor: pointer;
+}
+
+#tab_map .edit-view-tab {
+	margin: 0px;
+}
+
+.label-wrap .edit-view-tab-bar-label li.ui-tabs-tab {
+	margin-top: 0px; /* To allow the border-bottom 2px to show properly with the new font size 13px tabs. (Previously 12px) */
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	margin-bottom: 1px;
+	padding-bottom: 0px;
+}
+
+.ui-jqgrid .ui-jqgrid-resize-ltr {
+	float: right;
+	margin: -2px -2px -2px 0px;
+	width: 0px;
+}
+
+/* This fixes the 1-2px scroll on all grids issue: https://stackoverflow.com/questions/5647313/unnecessary-horizontal-scrollbar-jqgrid */
+div.ui-jqgrid-view table.ui-jqgrid-btable {
+	border-style: none;
+	border-top-style: none;
+	border-collapse: separate;
+}
+
+div.ui-jqgrid-view table.ui-jqgrid-btable td {
+	border-left-style: none
+}
+
+div.ui-jqgrid-view table.ui-jqgrid-htable {
+	border-style: none;
+	border-top-style: none;
+	border-collapse: separate;
+}
+
+div.ui-jqgrid-view table.ui-jqgrid-btable th {
+	border-left-style: none
+}
+/* This fixes the 1-2px scroll on all grids issue */
+
+.form_item_resume_pdf .no-documents-message {
+	text-align: center;
+	margin: 0;
+	padding: 10px;
+}
+
+.linkified {
+    cursor: pointer;
+    color: #0000EE !important;
+}
+
+.file-drop-zone-highlight {
+    background-color: #e1eef9;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    font-size: 3rem;
+    color: #3b3b3b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tticon.file-drop-zone-highlight-icon {
+    font-size: 3.5rem!important;
+    color: #3b3b3b;
+}
+
+.file-drop-zone-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    border: 3px solid #3b3b3b;
+    border-radius: 5px;
+}
+
+.alert.drag-and-drop-tip {
+    margin-top: 0.75rem;
+    background-color: #2196f3;
+    border-color: #32689b;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+/********************************
+* PDF.js CSS
+* Used in TTPDFViewer and JobApplicationViewController
+*********************************/
+/*.pdfViewer .page {*/
+.pdfContainer .page {
+	box-sizing: content-box; /* Need this to fix margins and shadows around the PDF pages. TT app is default box-sizing:border-box, but the PDFjsViewer styles are expecting content-box. */
+	/* TODO: Check if we still need the above box-sizing with pdfload2 */
+	position: relative;
+	margin: 10px auto; /* 10px is for space between the pages, and the auto is to center align */
+	-webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+}
+
+/* Makes sure we can select text in PDFs, as rest of application is unselectable */
+.pdfContainer .textLayer {
+	-webkit-touch-callout: default;
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+/***** Vue ContextMenu Border Styling ****/
+.context-border {
+    position: relative;
+    padding: 10px; /* Any changes here need to be updated in the grid width calculations. */
+    margin: 20px;
+    border: 1px solid #dbdee1;
+    height: calc(100% - 35px); /* Adjust for the topbar in static and slim mode */
+}
+
+.layout-horizontal .context-border {
+    height: calc(100% - 50px); /* Horizontal layout mode needs to account for both topbar and horizontal menu */
+}
+
+/* Sub views cause issues if these are set to same as above. For example sizing will be broken on Employee -> Edit Employee -> Qualifications */
+.layout-container .sub-view .context-border {
+    height: auto;
+}
+
+.context-border .context-border-label {
+    position: absolute;
+    top: -9px;
+    left: 11px;
+    background: #fff;
+    color: #7d8186;
+    font-size: 14px;
+    padding: 0 4px; /* Second value determines the gap left and right of the context border label */
+}
+
+/** Nested Context-border adjustments to reduce the compounding effect of padding and margins from the context-border. */
+
+.context-border .context-border {
+    /*margin-left: 0; !* To reduce double spacing from 2x margin + padding. Only left, so because we need top/bottom in Employee->Qualifications for subgrid separation. and right for spacing from scrollbar. *!*/
+    margin: 10px;
+}
+
+
+/***** START Hide legacy TopMenu Container and only use Vue menus ****/
+/* Hide the top nav and old context, and still allow javascript to query the icons to get id's etc until the code has been refactored to remove this dependancy. */
+/* More context in main.js window.tt function */
+
+#topContainer.hide-old-topmenu {
+    /* https://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/ */
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+/***** END Hide legacy TopMenu Container and only use Vue menus ****/
+
+/*
+    PrimeVue spinner css from Nova theme
+    main_ui-styles.js line 11 has the following theme commented out: import 'primevue/resources/themes/nova/theme.css';
+    Restoring that line causes the spinner to work again, however instead of importing the entire theme, we are only copying out the spinner css.
+*/
+.p-progressbar {
+    border: 0 none;
+    height: 24px;
+    background: #eaeaea;
+    border-radius: 3px;
+}
+
+.p-progressbar .p-progressbar-value {
+    border: 0 none;
+    margin: 0;
+    background: #007ad9;
+}
+
+.p-progressbar .p-progressbar-label {
+    color: #ffffff;
+    line-height: 24px;
+}
+
+.p-progress-spinner-svg {
+    animation: p-progress-spinner-rotate 2s linear infinite;
+}
+
+.p-progress-spinner-circle {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: 0;
+    stroke: #212121;
+    animation: p-progress-spinner-dash 1.5s ease-in-out infinite, p-progress-spinner-color 6s ease-in-out infinite;
+    stroke-linecap: round;
+}
+
+@keyframes p-progress-spinner-rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes p-progress-spinner-dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+
+@keyframes p-progress-spinner-color {
+    100%, 0% {
+        stroke: #212121;
+    }
+    40% {
+        stroke: #212121;
+    }
+    66% {
+        stroke: #212121;
+    }
+    80%, 90% {
+        stroke: #212121;
+    }
+}
+
+/**** PrimeVue ****/
+div, .p-menu ul { /** Bootstrap is overriding the PrimeVue dropdown menu styles after Issue #3424 NPM update. We need to ensure this rule is applied and not bootstraps. **/
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/**** Override jQuery Widget Fonts ****/
+.ui-widget {
+    font-family: var(--ttfont-family);
+}
+
+.ui-widget button {
+    font-family: var(--ttfont-family);
+}
+
+/***** TT Icons *****/
+
+@font-face {
+    font-family: 'tticons';
+    src:
+            url('icon_library/tticons.ttf?39ithx') format('truetype'),
+            url('icon_library/tticons.woff?39ithx') format('woff'),
+            url('icon_library/tticons.svg?39ithx#tticons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.tticon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'tticons' !important;
+    speak: never;
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.tticon-login_black_24dp:before {
+    content: "\e977";
+}
+.tticon-redo_black_24dp:before {
+    content: "\e967";
+}
+.tticon-thumb_up_black_24dp:before {
+    content: "\e968";
+}
+.tticon-thumb_down_black_24dp:before {
+    content: "\e969";
+}
+.tticon-thumbs_up_down_black_24dp:before {
+    content: "\e96a";
+}
+.tticon-account_circle_black_24dp:before {
+    content: "\e96b";
+}
+.tticon-verified_black_24dp:before {
+    content: "\e96c";
+}
+.tticon-check_circle_outline_black_24dp:before {
+    content: "\e96d";
+}
+.tticon-lightbulb_black_24dp:before {
+    content: "\e96e";
+}
+.tticon-heart_outline_black_24dp:before {
+    content: "\e978";
+}
+.tticon-heart_black_24dp:before {
+    content: "\e979";
+}
+.tticon-heart_red_24dp:before {
+    color: red;
+    content: "\e978";
+}
+.tticon-star_outline_black_24dp:before {
+    content: "\e97d";
+}
+.tticon-star_black_24dp:before {
+    content: "\e980";
+}
+.tticon-logout_black_24dp:before {
+    content: "\e96f";
+}
+.tticon-search_black_24dp:before {
+    content: "\e970";
+}
+.tticon-lock_black_24dp:before {
+    content: "\e971";
+}
+.tticon-fact_check_black_24dp:before {
+    content: "\e972";
+}
+.tticon-folder_black_24dp:before {
+    content: "\e973";
+}
+.tticon-description_black_24dp:before {
+    content: "\e974";
+}
+.tticon-find_in_page_black_24dp:before {
+    content: "\e975";
+}
+.tticon-pending_actions_black_24dp:before {
+    content: "\e976";
+}
+.tticon-person_add_alt_black_24dp:before {
+    content: "\e963";
+}
+.tticon-post_add_black_24dp1:before {
+    content: "\e964";
+}
+.tticon-contact_mail_black_24dp:before {
+    content: "\e965";
+}
+.tticon-switch_account_black_24dp:before {
+    content: "\e966";
+}
+.tticon-print_black_24dp:before {
+    content: "\e962";
+}
+.tticon-notifications_black_24dp:before {
+    content: "\e95f";
+}
+.tticon-notification_important_black_24dp:before {
+    content: "\e960";
+}
+.tticon-edit_notifications_black_24dp:before {
+    content: "\e961";
+}
+.tticon-edit_note_black_24dp:before {
+    content: "\e95b";
+}
+.tticon-north_east_black_24dp:before {
+    content: "\e95c";
+}
+.tticon-double_arrow_black_24dp:before {
+    content: "\e95d";
+}
+.tticon-label_black_24dp:before {
+    content: "\e951";
+}
+.tticon-more_black_24dp1:before {
+    content: "\e95e";
+}
+.tticon-more_vert_black_24dp:before {
+    content: "\e952";
+}
+.tticon-more_horiz_black_24dp:before {
+    content: "\e953";
+}
+.tticon-sms_black_24dp:before {
+    content: "\e954";
+}
+.tticon-more_black_24dp:before {
+    content: "\e955";
+}
+.tticon-dialpad_black_24dp:before {
+    content: "\e956";
+}
+.tticon-drag_indicator_black_24dp:before {
+    content: "\e957";
+}
+.tticon-pending_black_24dp:before {
+    content: "\e958";
+}
+.tticon-my_location_black_24dp:before {
+    content: "\e959";
+}
+.tticon-near_me_black_24dp:before {
+    content: "\e95a";
+}
+.tticon-speed_black_24dp:before {
+    content: "\e950";
+}
+.tticon-edit_black_24dp:before {
+    content: "\e900";
+}
+.tticon-add_black_24dp:before {
+    content: "\e901";
+}
+.tticon-post_add_black_24dp:before {
+    content: "\e902";
+}
+.tticon-add_circle_outline_black_24dp:before {
+    content: "\e903";
+}
+.tticon-refresh_black_24dp:before {
+    content: "\e904";
+}
+.tticon-autorenew_black_24dp:before {
+    content: "\e905";
+}
+.tticon-loop_black_24dp:before {
+    content: "\e906";
+}
+.tticon-visibility_black_24dp:before {
+    content: "\e907";
+}
+.tticon-preview_black_24dp:before {
+    content: "\e908";
+}
+.tticon-content_copy_black_24dp:before {
+    content: "\e909";
+}
+.tticon-save_alt_black_24dp:before {
+    content: "\e90a";
+}
+.tticon-save_black_24dp:before {
+    content: "\e90b";
+}
+.tticon-close_black_24dp:before {
+    content: "\e90c";
+}
+.tticon-cancel_black_24dp:before {
+    content: "\e90d";
+}
+.tticon-highlight_off_black_24dp:before {
+    content: "\e90e";
+}
+.tticon-do_not_disturb_black_24dp:before {
+    content: "\e90f";
+}
+.tticon-map_black_24dp:before {
+    content: "\e910";
+}
+.tticon-place_black_24dp:before {
+    content: "\e911";
+}
+.tticon-file_download_black_24dp:before {
+    content: "\e912";
+}
+.tticon-file_upload_black_24dp:before {
+    content: "\e913";
+}
+.tticon-share_black_24dp:before {
+    content: "\e914";
+}
+.tticon-ios_share_black_24dp:before {
+    content: "\e915";
+}
+.tticon-reply_black_24dp:before {
+    content: "\e916";
+}
+.tticon-send_black_24dp:before {
+    content: "\e917";
+}
+.tticon-settings_black_24dp:before {
+    content: "\e918";
+}
+.tticon-info_black_24dp:before {
+    content: "\e919";
+}
+.tticon-check_box_black_24dp:before {
+    content: "\e91a";
+}
+.tticon-check_box_outline_blank_black_24dp:before {
+    content: "\e91b";
+}
+.tticon-radio_button_unchecked_black_24dp:before {
+    content: "\e91c";
+}
+.tticon-radio_button_checked_black_24dp:before {
+    content: "\e91d";
+}
+.tticon-picture_as_pdf_black_24dp:before {
+    content: "\e91e";
+}
+.tticon-format_list_numbered_black_24dp:before {
+    content: "\e91f";
+}
+.tticon-note_add_black_24dp:before {
+    content: "\e920";
+}
+.tticon-report_problem_black_24dp:before {
+    content: "\e921";
+}
+.tticon-flag_black_24dp:before {
+    content: "\e922";
+}
+.tticon-report_gmailerrorred_black_24dp:before {
+    content: "\e923";
+}
+.tticon-show_chart_black_24dp:before {
+    content: "\e924";
+}
+.tticon-trending_up_black_24dp:before {
+    content: "\e925";
+}
+.tticon-insert_chart_outlined_black_24dp:before {
+    content: "\e926";
+}
+.tticon-feed_black_24dp:before {
+    content: "\e927";
+}
+.tticon-view_module_black_24dp:before {
+    content: "\e928";
+}
+.tticon-schedule_black_24dp:before {
+    content: "\e929";
+}
+.tticon-timer_black_24dp:before {
+    content: "\e92a";
+}
+.tticon-alarm_black_24dp:before {
+    content: "\e92b";
+}
+.tticon-alarm_on_black_24dp:before {
+    content: "\e92c";
+}
+.tticon-people_black_24dp:before {
+    content: "\e92d";
+}
+.tticon-supervisor_account_black_24dp:before {
+    content: "\e92e";
+}
+.tticon-people_alt_black_24dp:before {
+    content: "\e92f";
+}
+.tticon-business_black_24dp:before {
+    content: "\e930";
+}
+.tticon-apartment_black_24dp:before {
+    content: "\e931";
+}
+.tticon-paid_black_24dp:before {
+    content: "\e932";
+}
+.tticon-attach_money_black_24dp:before {
+    content: "\e933";
+}
+.tticon-local_atm_black_24dp:before {
+    content: "\e934";
+}
+.tticon-policy_black_24dp:before {
+    content: "\e935";
+}
+.tticon-rule_black_24dp:before {
+    content: "\e936";
+}
+.tticon-gavel_black_24dp:before {
+    content: "\e937";
+}
+.tticon-rule_folder_black_24dp:before {
+    content: "\e938";
+}
+.tticon-receipt_black_24dp:before {
+    content: "\e939";
+}
+.tticon-receipt_long_black_24dp:before {
+    content: "\e93a";
+}
+.tticon-business_center_black_24dp:before {
+    content: "\e93b";
+}
+.tticon-work_outline_black_24dp:before {
+    content: "\e93c";
+}
+.tticon-badge_black_24dp:before {
+    content: "\e93d";
+}
+.tticon-person_pin_black_24dp:before {
+    content: "\e93e";
+}
+.tticon-person_black_24dp:before {
+    content: "\e93f";
+}
+.tticon-face_black_24dp:before {
+    content: "\e940";
+}
+.tticon-person_outline_black_24dp:before {
+    content: "\e941";
+}
+.tticon-help_outline_black_24dp:before {
+    content: "\e942";
+}
+.tticon-help_center_black_24dp:before {
+    content: "\e943";
+}
+.tticon-event_black_24dp:before {
+    content: "\e944";
+}
+.tticon-calendar_today_black_24dp:before {
+    content: "\e945";
+}
+.tticon-date_range_black_24dp:before {
+    content: "\e946";
+}
+.tticon-auto_fix_high_black_24dp:before {
+    content: "\e947";
+}
+.tticon-delete_black_24dp:before {
+    content: "\e948";
+}
+.tticon-delete_forever_black_24dp:before {
+    content: "\e949";
+}
+.tticon-navigate_next_black_24dp:before {
+    content: "\e94a";
+}
+.tticon-navigate_before_black_24dp:before {
+    content: "\e94b";
+}
+.tticon-expand_more_black_24dp:before {
+    content: "\e94c";
+}
+.tticon-expand_less_black_24dp:before {
+    content: "\e94d";
+}
+.tticon-arrow_back_black_24dp:before {
+    content: "\e94e";
+}
+.tticon-arrow_forward_black_24dp:before {
+    content: "\e94f";
+}
+.tticon-stars_black_24dp:before {
+    content: "\e981";
+}
+.tticon-new_chat_black_24dp:before {
+    content: "\e982";
+}

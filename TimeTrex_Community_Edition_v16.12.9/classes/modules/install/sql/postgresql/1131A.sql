@@ -1,0 +1,3 @@
+ALTER TABLE contributing_shift_policy ADD COLUMN minimum_time_in_this_shift SMALLINT DEFAULT 0;
+ALTER TABLE contributing_shift_policy ADD COLUMN minimum_time_into_this_shift SMALLINT DEFAULT 0;
+ALTER TABLE contributing_shift_policy ADD COLUMN maximum_time_into_next_shift SMALLINT DEFAULT 0;

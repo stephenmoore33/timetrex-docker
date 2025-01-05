@@ -1,0 +1,1 @@
+ALTER TABLE users ALTER COLUMN employee_number TYPE bigint USING ( CASE WHEN employee_number = '' THEN NULL ELSE employee_number::bigint END );

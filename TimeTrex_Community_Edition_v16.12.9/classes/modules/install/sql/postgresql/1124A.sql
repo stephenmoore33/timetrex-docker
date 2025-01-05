@@ -1,0 +1,1 @@
+ALTER TABLE recurring_schedule_control ADD user_id UUID;

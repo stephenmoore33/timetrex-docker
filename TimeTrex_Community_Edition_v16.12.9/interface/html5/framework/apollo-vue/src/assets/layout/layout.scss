@@ -1,0 +1,33 @@
+$breakpoint: 992px !default;
+$scale: 14px !default;
+
+//Issue #3436 - Apollo Upgrade.
+//Previously we were using 3 separate fonts. With the apollo layout files previously using Font family: "Source Sans Pro", Arial, sans-serif. Now with Apollo 5.0 it would use Font family: Poppins, sans-serif)
+
+//TimeTrex views have generally used two fonts (prior to Apollo):
+//Font family: "Lucida Grande", "Lucida Sans", Arial, sans-serif (Used for headers generally and areas such dashboard headers, saved search & layout)
+//Font family: Arial, Helvetica, sans-serif (Primarily used for the main content area, such as text input labels, table grids, etc.)
+//This means we are still using 2 fonts in various areas, but with removing the './_fonts' file, we are consistently using only the same 2 fonts as TimeTrex already uses.
+
+//This may be changed to only use 1 font in the future, but for now keeping it consistent with the existing TimeTrex layout (minus removal of the third font)
+
+//@import './_fonts';
+@import './_layout_light';
+@import './_layout_dim';
+@import './_layout_dark';
+@import './_main';
+@import './_sidebar_vertical';
+@import './_sidebar_slim';
+@import './_sidebar_slim_plus';
+@import './_sidebar_horizontal';
+@import './_sidebar_reveal';
+@import './_sidebar_drawer';
+@import './menutheme/_menutheme';
+@import './_responsive';
+@import './_topbar';
+@import './_breadcrumb';
+@import './_profile';
+@import './_config';
+@import './_content';
+@import './_typography';
+@import './_utils';

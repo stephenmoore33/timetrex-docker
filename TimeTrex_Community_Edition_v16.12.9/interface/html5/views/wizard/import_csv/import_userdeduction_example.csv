@@ -1,0 +1,5 @@
+Employee #,SIN/SSN,User Name,Tax / Deduction,US - Federal Income Tax Formula - Form W-4 Version,US - Federal Income Tax Formula - Filing Status,US - Federal Income Tax Formula – Allowances,US - Federal Income Tax Formula - Multiple Jobs or Spouse Works,US - Federal Income Tax Formula – Claim Dependents,US - Federal Income Tax Formula – Other Income,US - Federal Income Tax Formula – Deductions,US - Federal Income Tax Formula – Extra Withholding,US – CA – State Income Tax Formula – Filing Status,US – CA – State Income Tax Formula – Allowances,CA - Federal Income Tax Formula - Claim Amount,Fixed Amount – Amount
+99,846920813,john.smith,US - Federal Income Tax,2020,Single or Married Filing Separately,3,Yes,500,8000,800,150,,,,
+99,846920813,john.smith,NY - State Income Tax,,,,,,,,,Married - Spouse Works,2,,
+98,742891583,jane.smith,CA - Federal Income Tax,,,,,,,,,,,14500,
+99,846920813,john.smith,Health Benefit Plan,,,,,,,,,,,,482

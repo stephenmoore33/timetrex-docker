@@ -1,0 +1,2 @@
+import{_ as i,j as e}from"./vendor-tTApdY0Y.bundle.js";class l extends ReportBaseViewController{constructor(t={}){i.defaults(t,{}),super(t)}initReport(t){this.script_name="AuditTrailReport",this.viewId="AuditTrailReport",this.context_menu_name=e.i18n._("Audit Trail"),this.navigation_label=e.i18n._("Saved Report"),this.view_file="AuditTrailReportView.html",this.api=TTAPI.APIAuditTrailReport}getCustomContextMenuModel(){return{exclude:[],include:["default"]}}}export{l as AuditTrailReportViewController};
+//# sourceMappingURL=AuditTrailReportViewController-BOgYkhSm.bundle.js.map

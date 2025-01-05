@@ -1,0 +1,2 @@
+import{_ as r,j as t}from"./vendor-tTApdY0Y.bundle.js";class m extends ReportBaseViewController{constructor(e={}){r.defaults(e,{}),super(e)}initReport(e){this.script_name="JobSummaryReport",this.viewId="JobSummaryReport",this.context_menu_name=t.i18n._("Job Summary"),this.navigation_label=t.i18n._("Saved Report"),this.view_file="JobSummaryReportView.html",this.api=TTAPI.APIJobSummaryReport}}export{m as JobSummaryReportViewController};
+//# sourceMappingURL=JobSummaryReportViewController-BsaeP-wo.bundle.js.map

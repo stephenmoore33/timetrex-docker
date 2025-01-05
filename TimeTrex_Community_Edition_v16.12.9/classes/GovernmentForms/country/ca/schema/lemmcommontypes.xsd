@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+Description	Common Simple, Complex and Element Types for INFODEC returns
+Version#:	1.23 (version #.yy)
+Revision History:
+Mar 2013	Initial creation to allow new Infodec schemas to follow the new CRA XML standard.
+Apr 2014	Updated to include common types used for PartXVIII return.
+May 2015	Updated to include common types used for T3 special returns.
+May 2019	Updated to include common types used for T2202 return.
+May 2023	Updated to include common types used for T4FHSA return.
+-->
+
+<xsd:schema xmlns:sdt="http://www.cra-arc.gc.ca/xmlns/sdt/2-2-0" 
+	xmlns:ccms="http://www.cra-arc.gc.ca/xmlns/ccms/1-0-0" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:import namespace="http://www.cra-arc.gc.ca/xmlns/sdt/2-2-0" schemaLocation="standarddatatypes.xsd"/>
+	<xsd:import namespace="http://www.cra-arc.gc.ca/xmlns/ccms/1-0-0" schemaLocation="cracommonstructures.xsd"/>
+
+	<!--================= Simple Types =======================-->
+
+	<!--                                                   	  -->
+	<!--                    String definitions                -->
+	<!--                                                      -->
+	<xsd:simpleType name="SlipCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:enumeration value="A"/>
+			<xsd:enumeration value="M"/>
+			<xsd:enumeration value="O"/>
+			<xsd:enumeration value="C"/>
+			<xsd:enumeration value="a"/>
+			<xsd:enumeration value="m"/>
+			<xsd:enumeration value="o"/>
+			<xsd:enumeration value="c"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SummaryCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:length value="1"/>
+			<xsd:enumeration value="A"/>
+			<xsd:enumeration value="M"/>
+			<xsd:enumeration value="O"/>
+			<xsd:enumeration value="a"/>
+			<xsd:enumeration value="m"/>
+			<xsd:enumeration value="o"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="TransmitterNumberType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="(MM|mm)\d{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="LanguageType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:length value="1"/>
+			<xsd:enumeration value="E"/>
+			<xsd:enumeration value="F"/>
+			<xsd:enumeration value="e"/>
+			<xsd:enumeration value="f"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PostalZipCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length12PostalZipCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="12"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ProvinceStateCountryCodeType">
+		<xsd:union memberTypes="ccms:CanadianProvinceTerritoryCodeType ccms:USAStateCodeType ccms:CountryCodeType"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PhoneNumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{3}-\d{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PhoneAreaCodeType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SINType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{9}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BNType">
+		<xsd:annotation>
+			<xsd:documentation>Root = 999999999, Program ID = AA, Account # = 9999</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{9}\p{L}{2}\d{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BNRootType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{9}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T2202 -->
+	<xsd:simpleType name="BNRZType">
+		<xsd:annotation>
+			<xsd:documentation>Root = 999999999, Program ID = RZ, Account # = 9999</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{9}(RZ)\d{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- Added for T4FHSA -->
+	<xsd:simpleType name="BNRPType">
+		<xsd:annotation>
+			<xsd:documentation>Root = 999999999, Program ID = RP, Account # = 9999</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{9}(RP)\d{4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="TrustNumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="(\p{L}{1}[0-9]{8})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="BNTrustTypes">
+			<xsd:union memberTypes="BNType TrustNumberType"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length3NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length6NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length2CountryCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="\p{L}{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T3 special returns -->
+	<xsd:simpleType name="TrustNumberTypeII">
+		<xsd:annotation>
+			<xsd:documentation>T plus 8 numeric</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="T\d{8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T3 special returns -->
+	<xsd:simpleType name="ProvinceCodeType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Must be one of the following abbreviations: NL - Newfoundland, PE - Prince Edward Island, NS - Nova Scotia, NB - New Brunswick, QC - Quebec, ON - Ontario, MB - Manitoba, SK - Saskatchewan, AB - Alberta, BC - British Columbia, YT - Yukon, NU - Nunavut, NT - Northwest Territories</xsd:documentation>
+			<xsd:documentation xml:lang="fr">Doit être l'une des abréviations suivantes: NL - Terre-Neuve-et-Labrador, PE - Île-du-Prince-Édouard, NS - Nouvelle-Écosse, NB - Nouveau-Brunswick, QC - Québec, ON - Ontario, MB - Manitoba, SK - Saskatchewan, AB - Alberta, BC - Colombie-Britannique, YT - Yukon, NU - Nunavut, NT - Territoires du Nord-Ouest</xsd:documentation>
+			<xsd:documentation>
+		The values of US and ZZ are included in case they are needed to satisfy certain business requirements
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:enumeration value="AB"/>
+			<xsd:enumeration value="BC"/>
+			<xsd:enumeration value="MB"/>
+			<xsd:enumeration value="NB"/>
+			<xsd:enumeration value="NL"/>
+			<xsd:enumeration value="NS"/>
+			<xsd:enumeration value="NT"/>
+			<xsd:enumeration value="NU"/>
+			<xsd:enumeration value="ON"/>
+			<xsd:enumeration value="PE"/>
+			<xsd:enumeration value="QC"/>
+			<xsd:enumeration value="SK"/>
+			<xsd:enumeration value="YT"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!--                                                               -->
+	<!-- Variable Length Numeric definitions (2,3,4,7,8,11,12,13,15)   -->
+	<!--                                                               -->
+	<xsd:simpleType name="Length5NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to5NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{1,5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to7NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{1,7}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to13NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{1,13}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SignedLength1to13NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="[+-]?\d{1,13}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to20NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to30NumberType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to3CountType">
+		<xsd:restriction base="sdt:CountType">
+			<xsd:pattern value="\d{1,3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to4CountType">
+		<xsd:restriction base="sdt:CountType">
+			<xsd:pattern value="\d{1,4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to6CountType">
+		<xsd:restriction base="sdt:CountType">
+			<xsd:pattern value="\d{1,6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to7CountType">
+		<xsd:restriction base="sdt:CountType">
+			<xsd:pattern value="\d{1,7}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length1to15CountType">
+		<xsd:restriction base="sdt:CountType">
+			<xsd:pattern value="\d{1,15}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T2202 -->
+	<xsd:simpleType name="ZeroToTwelveCountType">
+		<xsd:restriction base="sdt:CountType">
+			<xsd:pattern value="\d{1,2}"/>
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="12"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="Precision6PercentType">
+		<xsd:restriction base="sdt:PercentType">
+			<xsd:totalDigits value="9"></xsd:totalDigits>
+			<xsd:pattern value="[+]?\d{0,3}\.\d{6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Decimal9AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="9"></xsd:totalDigits>
+			<xsd:pattern value="[+]?\d{0,7}\.\d{2}"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Decimal11AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="11"></xsd:totalDigits>
+			<xsd:pattern value="[+]?\d{0,9}\.\d{2}"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="Decimal13AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="13"></xsd:totalDigits>
+		    <xsd:pattern value="[+]?\d{0,11}\.\d{2}"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Decimal15AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="15"></xsd:totalDigits>
+		    <xsd:pattern value="[+]?\d{0,13}\.\d{2}"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SignedDecimal9AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="9"></xsd:totalDigits>
+			<xsd:pattern value="[+-]?\d{0,7}\.\d{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SignedDecimal11AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="11"></xsd:totalDigits>
+			<xsd:pattern value="[+-]?\d{0,9}\.\d{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SignedDecimal13AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="13"></xsd:totalDigits>
+	    	<xsd:pattern value="[+-]?\d{0,11}\.\d{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="SignedDecimal15AmountType">
+		<xsd:restriction base="sdt:AmountType">
+			<xsd:totalDigits value="15"></xsd:totalDigits>
+			<xsd:pattern value="[+-]?\d{0,13}\.\d{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!--                                                        -->
+	<!-- Indicator  definitions (1-5,1-4,0-3,0-2,1-2,1-3-4,)    -->
+	<!--                                                        -->
+
+	<xsd:simpleType name="ZeroToFourCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="[0-4]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="OneToFourCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="[1-4]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T2202 -->
+	<xsd:simpleType name="OneToFiveCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="[1-5]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T2202 -->
+	<xsd:simpleType name="OneToSixCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="[1-6]{1}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="OneThreeFourCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="1|3|4"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CurrencyCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:pattern value="\p{L}{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="YesNoCodeType">
+		<xsd:restriction base="sdt:CodeType">
+			<xsd:length value="1"/>
+			<xsd:enumeration value="Y"/>
+			<xsd:enumeration value="N"/>
+			<xsd:enumeration value="O"/>   <!-- Oui -->
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Added for T4FHSA -->
+	<xsd:simpleType name="Length10AlphanumericType">
+		<xsd:restriction base="xsd:string">
+	    		<xsd:pattern value="[a-zA-Z0-9]+"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="Length20AlphanumericWithDashType">
+		<xsd:annotation>
+			<xsd:documentation>letters, numbers, hyphens (not at the start or at the end) </xsd:documentation>
+		</xsd:annotation>
+
+		<xsd:restriction base="xsd:string">
+	    		<xsd:pattern value="[a-zA-Z0-9]+([a-zA-Z0-9\-])*[a-zA-Z0-9]+"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Alphanumeric5SpecialCharType">
+		<xsd:annotation>
+			<xsd:documentation>letters, numbers, spaces ( ), hyphens (-), periods (.), ampersands, and apostrophes (').</xsd:documentation>
+		</xsd:annotation>
+	
+		<xsd:restriction base="xsd:token">
+	    		<xsd:pattern value="[a-zA-Z0-9 \-.&amp;']+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AlphaWithFrench5SpecialCharType">
+		<xsd:annotation>
+			<xsd:documentation>letters (English and French, numbers, spaces ( ), hyphens (-), periods (.), ampersands, and apostrophes (').</xsd:documentation>
+		</xsd:annotation>
+	
+		<xsd:restriction base="xsd:token">
+	    		<xsd:pattern value="[a-zA-Zâàç¢éêëèîïÂÀÇÉÊËÈÎÏôûüÔÛÜùÙ0-9 \-.&amp;']+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Alphanumeric7SpecialCharType">
+		<xsd:annotation>
+			<xsd:documentation>letters, numbers, hyphens (-), periods (.), ampersands, apostrophes ('), quotation marks ("), number signs (#) and forward slashes (/).</xsd:documentation>
+		</xsd:annotation>
+	
+		<xsd:restriction base="xsd:string">
+	    		<xsd:pattern value="[a-zA-Z0-9\-.&amp;&apos;&quot;#/]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Alphanumeric11SpecialCharType">
+		<xsd:annotation>
+			<xsd:documentation>letters, numbers, spaces ( ), hyphens (-), periods (.), ampersands, apostrophes ('), quotation marks ("), commas (,), slashes (/), number signs (#), and parentheses (())</xsd:documentation>
+		</xsd:annotation>
+	
+		<xsd:restriction base="xsd:token">
+	    		<xsd:pattern value="[a-zA-Z0-9 \-.&amp;&apos;&quot;,/#()]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AlphaWithFrench11SpecialCharType">
+		<xsd:annotation>
+			<xsd:documentation>letters (English and French), numbers, spaces ( ), hyphens (-), periods (.), ampersands, apostrophes ('), quotation marks ("), commas (,), slashes (/), number signs (#), and parentheses (())</xsd:documentation>
+		</xsd:annotation>
+	
+		<xsd:restriction base="xsd:token">
+	    		<xsd:pattern value="[a-zA-Zâàç¢éêëèîïÂÀÇÉÊËÈÎÏôûüÔÛÜùÙ0-9 \-.&amp;&apos;&quot;,/#()]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Alphanumeric17SpecialCharType">
+		<xsd:annotation>
+			<xsd:documentation>letters, numbers, spaces ( ), hyphens (-), periods (.),  ampersands, apostrophes ('), quotation marks ("), commas (,), slashes(/), number signs (#), question marks(?), exclamation marks (!), ampersands(@), dollar signs($), percentages (%),  asterixis (*), and brackets (()).</xsd:documentation>
+		</xsd:annotation>
+	
+		<xsd:restriction base="xsd:token">
+	    		<xsd:pattern value="[a-zA-Z0-9 \-.&amp;&apos;&quot;,/#?!@$%*()]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="Length28Alphanumeric5CharType">
+		<xsd:restriction base="Alphanumeric5SpecialCharType">
+			<xsd:maxLength value="28"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length30Alphanumeric5CharType">
+		<xsd:restriction base="Alphanumeric5SpecialCharType">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length30AlphaWithFrench5CharType">
+		<xsd:restriction base="AlphaWithFrench5SpecialCharType">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length30Alphanumeric7CharType">
+		<xsd:restriction base="Alphanumeric7SpecialCharType">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length30Alphanumeric11CharType">
+		<xsd:restriction base="Alphanumeric11SpecialCharType">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length30AlphaWithFrench11CharType">
+		<xsd:restriction base="AlphaWithFrench11SpecialCharType">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Length35AlphaWithFrench11CharType">
+		<xsd:restriction base="AlphaWithFrench11SpecialCharType">
+			<xsd:maxLength value="35"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AmendmentNoteType">
+		<xsd:restriction base="Alphanumeric17SpecialCharType">
+			<xsd:maxLength value="1309"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!--================== Complex Types =======================-->
+
+	<!--                                                        -->
+	<!-- Character definitions (1,3,10,12,15,20,22,25,28,30,60) -->
+	<!--                                                        -->
+	<xsd:complexType name="Length1TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:pattern value="\p{L}{1}"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to8TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="8"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to9TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="9"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to12TextType">
+		<xsd:simpleContent>
+	 		<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="12"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to20TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="20"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to22TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="22"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to25TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="25"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to28TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="28"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to30TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="30"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to60TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="60"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length1to1309TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="1309"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="EmailLength1to60TextType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:TextType">
+				<xsd:pattern value="[^@]+@[^\.]+\..+"/>
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="60"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<!--                                                        -->
+	<!--  Name Types                                            -->
+	<!--                                                        -->
+	<xsd:complexType name="Length1NameType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:NameType">
+				<xsd:length value="1"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length28NameType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:NameType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="28"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length30NameType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:NameType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="30"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="Length35NameType">
+		<xsd:simpleContent>
+			<xsd:restriction base="sdt:NameType">
+				<xsd:minLength value="1"/>
+				<xsd:maxLength value="35"/>
+			</xsd:restriction>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="AddressType">
+		<xsd:sequence>		
+			<xsd:element ref="AddressLine1Text" 	minOccurs="0"/>
+			<xsd:element ref="AddressLine2Text"	minOccurs="0"/> 						
+			<xsd:element ref="CityName" 		minOccurs="0"/> 
+			<xsd:element ref="ProvinceStateCode"	minOccurs="0"/> 						
+			<xsd:element ref="CountryCode" 		minOccurs="0"/> 						
+			<xsd:element ref="PostalZipCode"	minOccurs="0"/> 					
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RequiredPostalCodeAddressType">
+		<xsd:sequence>
+			<xsd:element ref="AddressLine1Text"	minOccurs="0"/>						
+			<xsd:element ref="AddressLine2Text"	minOccurs="0"/> 						
+			<xsd:element ref="CityName" 		minOccurs="0"/>
+			<xsd:element ref="ProvinceStateCode"	minOccurs="0"/> 						
+			<xsd:element ref="CountryCode"		minOccurs="0"/> 						
+			<xsd:element ref="PostalZipCode"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RequiredCityCountryAddressType">
+		<xsd:sequence>
+			<xsd:element ref="AddressLine1Text" minOccurs="0"/>						
+			<xsd:element ref="AddressLine2Text" minOccurs="0"/> 						
+			<xsd:element ref="CityName"/>
+			<xsd:element ref="ProvinceStateCodeOrName" minOccurs="0"/>
+			<xsd:element name="CountryCode" type="Length2CountryCodeType"/>
+			<xsd:element ref="PostalZipCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Added for T3 special returns -->
+	<xsd:complexType name="CountryCodeAddressType">
+		<xsd:sequence>
+			<xsd:element ref="AddressLine1Text"/>						
+			<xsd:element ref="AddressLine2Text" minOccurs="0"/> 						
+			<xsd:element name="MunicipalityName" type="Length28NameType"/>
+			<xsd:element ref="ProvinceStateCode"/> 						
+			<xsd:element ref="CountryCode" minOccurs="0"/>
+			<xsd:element ref="PostalZipCode"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Added for T2202 return -->
+	<xsd:complexType name="RequiredLine1AddressType">
+		<xsd:sequence>
+			<xsd:element ref="AddressLine1Text"/>						
+			<xsd:element ref="AddressLine2Text"	minOccurs="0"/> 						
+			<xsd:element ref="CityName" 		minOccurs="0"/>
+			<xsd:element ref="ProvinceStateCode"	minOccurs="0"/> 						
+			<xsd:element ref="CountryCode"		minOccurs="0"/> 						
+			<xsd:element ref="PostalZipCode" 	minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="IndividualNameType">
+		<xsd:sequence>
+			<xsd:element ref="FamilyName"/>
+			<xsd:element ref="GivenName"		 minOccurs="0"/>
+			<xsd:element ref="NameInitialText"	 minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ContactType3">
+		<xsd:sequence>
+			<xsd:element ref="ContactName"/>
+			<xsd:element ref="ContactAreaCode"/>
+			<xsd:element ref="ContactPhoneNumber"/>
+			<xsd:element ref="ContactExtensionNumber"	 minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ContactType4">
+		<xsd:all>
+			<xsd:element ref="ContactName"/>
+			<xsd:element ref="ContactPhoneAreaCode"/>
+			<xsd:element ref="ContactPhoneNumber"/>
+			<xsd:element ref="ContactPhoneExtensionNumber" minOccurs="0"/>
+			<xsd:element ref="ContactEmailAddress"/>
+		</xsd:all>
+	</xsd:complexType>
+
+	<xsd:complexType name="ContactType5">
+		<xsd:sequence>
+			<xsd:element ref="ContactName"/>
+			<xsd:element ref="ContactPhoneAreaCode"/>
+			<xsd:element ref="ContactPhoneNumber"/>
+			<xsd:element name="ContactPhoneExtensionNumber" type="Length1to7NumberType" minOccurs="0"/>
+			<xsd:element ref="ContactEmailAddress" maxOccurs="5"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="TwoLinedLength30NameType">
+		<xsd:sequence>
+			<xsd:element name="NameLine1Text" type="ccms:Character30TextType"/>
+			<xsd:element name="NameLine2Text" type="ccms:Character30TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TwoLinedLength35NameType">
+		<xsd:sequence>
+			<xsd:element name="NameLine1Text" type="Length35NameType"/>
+			<xsd:element name="NameLine2Text" type="Length35NameType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ThreeLinedLength30NameType">
+		<xsd:sequence>
+			<xsd:element name="NameLine1Text" type="ccms:Character30TextType"/>
+			<xsd:element name="NameLine2Text" type="ccms:Character30TextType" minOccurs="0"/>
+			<xsd:element name="NameLine3Text" type="ccms:Character30TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ThreeLinedLength35NameType">
+		<xsd:sequence>
+			<xsd:element name="NameLine1Text" type="ccms:Character35TextType"/>
+			<xsd:element name="NameLine2Text" type="ccms:Character35TextType" minOccurs="0"/>
+			<xsd:element name="NameLine3Text" type="ccms:Character35TextType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Added for T3 special returns -->
+	<xsd:complexType name="SurGivenNameType">
+		<xsd:sequence>
+			<xsd:element name="Surname" type="Length30NameType"/>
+			<xsd:element name="GivenName" type="Length30NameType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Added for T3 special returns -->
+	<xsd:complexType name="ThreeFieldPhoneNumberType">
+		<xsd:sequence>
+			<xsd:element name="PhoneAreaCode" type="PhoneAreaCodeType"/>
+			<xsd:element name="PhoneNumber" type="PhoneNumberType"/>
+			<xsd:element name="PhoneExtensionNumber" type="Length1to5NumberType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="YYYYMMDDDateType">
+		<xsd:sequence>
+			<xsd:element ref="Year"/>
+			<xsd:element ref="Month"/>
+			<xsd:element ref="Day"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Added for T2202 -->
+	<xsd:simpleType name="YYMMType">
+		<xsd:restriction base="sdt:NumberType">
+			<xsd:pattern value="\d{2}(0[1-9]|1[012])"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!--                                                        -->
+	<!-- Element definistions                                   -->
+	<!--                                                        -->
+
+	<xsd:element name="AddressLine1Text" type="ccms:Character30TextType"/>
+
+	<xsd:element name="AddressLine2Text" type="ccms:Character30TextType"/>
+	
+	<xsd:element name="CityName" type="Length28NameType"/>
+
+	<xsd:element name="ProvinceStateCode" type="ccms:ProvinceTerritoryStateCodeType"/>
+
+	<!-- Length 3 country code -->
+	<xsd:element name="CountryCode" type="ccms:CountryCodeType"/>
+
+	<xsd:element name="PostalZipCode" type="PostalZipCodeType"/>
+
+
+	<xsd:element name="FamilyName" >
+		<xsd:complexType >
+			<xsd:simpleContent>
+				<xsd:restriction base="ccms:FamilyNameType">
+					<xsd:minLength value="1"/>
+					<xsd:maxLength value="20"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="GivenName" >
+		<xsd:complexType >
+			<xsd:simpleContent>
+				<xsd:restriction base="ccms:GivenNameType">
+					<xsd:minLength value="1"/>
+					<xsd:maxLength value="12"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="NameInitialText" > 
+		<xsd:complexType >
+			<xsd:simpleContent>
+				<xsd:restriction base="sdt:NameType">
+					<xsd:pattern value="\p{L}{1}"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="ContactName">
+    		<xsd:complexType>
+       			<xsd:simpleContent>
+	   			<xsd:restriction base="sdt:NameType"> 
+					<xsd:minLength value="1"/>
+	       				<xsd:maxLength value="22"/>
+	   			</xsd:restriction>
+       			</xsd:simpleContent>
+    		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="ContactAreaCode" type="PhoneAreaCodeType"/>
+	<xsd:element name="ContactPhoneAreaCode" type="PhoneAreaCodeType"/>
+	<xsd:element name="ContactPhoneNumber" type="PhoneNumberType"/>
+	<xsd:element name="ContactExtensionNumber" type="Length1to5NumberType"/>
+	<xsd:element name="ContactPhoneExtensionNumber" type="Length1to5NumberType"/>
+	<xsd:element name="SummaryReportTypeCode" type="SummaryCodeType"/>
+	<xsd:element name="SlipReportTypeCode" type="SlipCodeType"/>
+	<xsd:element name="TaxationYear" type="sdt:YearType"/>
+	<xsd:element name="TotalSlipCount" type="Length1to7CountType"/>
+	<xsd:element name="FilerAccountNumber" type="BNType"/>
+	<xsd:element name="ContactFamilyName" type="ccms:Name30CharacterType"/>
+	<xsd:element name="ContactGivenName" type="ccms:Name30CharacterType"/>
+	<xsd:element name="ContactEmailAddress" type="EmailLength1to60TextType"/>
+	<xsd:element name="FirstName" type="Length30NameType"/>
+	<xsd:element name="MiddleName" type="Length30NameType"/>
+	<xsd:element name="LastName" type="Length30NameType"/>
+	<xsd:element name="Day" type="sdt:DayType"/>
+	<xsd:element name="Month" type="sdt:MonthType"/>
+	<xsd:element name="Year" type="sdt:YearType"/>
+	<xsd:element name="ProvinceStateCodeOrName" type="Length1to30TextType"/>
+	
+	<!-- P18 - P19 Shared Element -->	
+	<xsd:element name="BusinessNumber" type="BNType"/>
+	<xsd:element name="ResidenceCountryCode" type="Length2CountryCodeType"/>
+	<xsd:element name="TINIssueCountryCode" type="Length2CountryCodeType"/>
+	<xsd:element name="IndividualIdentificationNumber" type="ccms:SINType"/>
+	<xsd:element name="AccountHolderBirthInformation" type="BirthInformationType"/>
+	
+	<xsd:complexType name="BirthInformationType">
+		<xsd:all>
+			<xsd:element ref="Day"/>
+			<xsd:element ref="Month"/>
+			<xsd:element ref="Year"/>
+		</xsd:all>
+	</xsd:complexType>
+	
+	<!-- Added for T4FHSA return -->
+	<xsd:complexType name="SlipRecipientNameType">
+		<xsd:all>
+			<xsd:element name="FamilyName" type="Length30AlphaWithFrench5CharType"></xsd:element>
+			<xsd:element name="GivenName" type="Length30AlphaWithFrench5CharType"></xsd:element>
+			<xsd:element name="Initial" minOccurs="0"> 
+				<xsd:complexType >
+					<xsd:simpleContent>
+						<xsd:restriction base="sdt:NameType">
+							<xsd:pattern value="[a-zA-Z]{1}"/>
+						</xsd:restriction>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:all>
+	</xsd:complexType>
+
+	<!-- Added for T4FHSA return -->
+	<xsd:complexType name="FamilyGivenNameType">
+		<xsd:all>
+			<xsd:element name="FamilyName" type="Length30AlphaWithFrench5CharType"></xsd:element>
+			<xsd:element name="GivenName" type="Length30AlphaWithFrench5CharType" minOccurs="0"></xsd:element>
+		</xsd:all>
+	</xsd:complexType>
+	
+	<!-- Added for T4FHSA return -->
+	<xsd:complexType name="FilerNameType">
+		<xsd:sequence>
+			<xsd:element name="NameLine1Text" type="Length35AlphaWithFrench11CharType"/>
+			<xsd:element name="NameLine2Text" type="Length35AlphaWithFrench11CharType" minOccurs="0"/>
+			<xsd:element name="NameLine3Text" type="Length35AlphaWithFrench11CharType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<!-- Added for T4FHSA return -->
+	<xsd:complexType name="OptionalLine2CountryCodeAddressType">
+		<xsd:sequence>
+			<xsd:element name="AddressLine1Text" type="Length30Alphanumeric11CharType"/>						
+			<xsd:element name="AddressLine2Text" type="Length30Alphanumeric11CharType" minOccurs="0"/> 						
+			<xsd:element name="CityName" type="Length28Alphanumeric5CharType"/>
+			<xsd:element ref="ProvinceStateCode"/> 						
+			<xsd:element ref="CountryCode" minOccurs="0"/> 						
+			<xsd:element name="PostalZipCode" type="Length10AlphanumericType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Added for T4FHSA return -->
+	<xsd:complexType name="FilerContactType">
+		<xsd:sequence>
+			<xsd:element name="ContactFamilyName" type="Length30AlphaWithFrench11CharType"/>
+			<xsd:element name="ContactGivenName" type="Length30AlphaWithFrench11CharType"/>
+			<xsd:element ref="ContactPhoneAreaCode"/>
+			<xsd:element ref="ContactPhoneNumber"/>
+			<xsd:element name="ContactPhoneExtensionNumber" type="Length1to5NumberType" minOccurs="0"/>
+			<xsd:element ref="ContactEmailAddress"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

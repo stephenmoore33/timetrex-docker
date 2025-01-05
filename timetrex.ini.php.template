@@ -1,0 +1,112 @@
+;<?php die('Unauthorized Access...'); //SECURITY MECHANISM, DO NOT REMOVE//?>
+;
+;
+; TimeTrex Configuration File
+; *Linux* Example
+;
+;
+
+[other]
+disable_auto_upgrade = ${DISABLE_AUTO_UPGRADE}
+;
+; System paths. NO TRAILING SLASHES!
+;
+[path]
+;URL to TimeTrex web root directory. ie: http://your.domain.com/<*BASE_URL*>
+;DO NOT INCLUDE http://your.domain.com, just the directory AFTER your domain
+base_url = ${URL_POSTFIX}
+
+;
+;Log directory  -- NOTICE: For security reasons, this should always be outside the web server document root.
+;
+log = /var/log/timetrex
+
+;
+;Misc storage, for attachments/images -- NOTICE: For security reasons, this should always be outside the web server document root.
+;
+storage = /var/timetrex/storage
+
+;
+;Full path and name to the PHP CLI Binary
+;
+php_cli = /usr/bin/php
+
+
+
+;
+; Database connection settings. These can be set from the installer.
+;
+[database]
+type = postgres
+host = ${DB_HOST}
+database_name = ${DB_NAME}
+user = ${DB_USER}
+password = "${DB_PASS}"
+
+
+;
+; Email delivery settings.
+;
+[mail]
+;Least setup, deliver email through TimeTrex's email relay via SOAP (HTTP port 80/443)
+delivery_method = soap
+
+;Deliver email through remote SMTP server with the following settings.
+;delivery_method = ${EMAIL_DELIVERY_METHOD}
+;smtp_host=${EMAIL_SMTP_HOST}
+;smtp_port=${EMAIL_SMTP_PORT}
+;smtp_username=${EMAIL_SMTP_USERNAME}
+;smtp_password=${EMAIL_SMTP_PASSWORD}
+
+;The domain that emails will be sent from, do not include the "@" or anything before it.
+; *ONLY* specify this if "delivery_method" above is "smtp" or "mail"
+;email_domain = ${EMAIL_DOMAIN}
+
+;The local part of the email address that emails will be sent from, do not include the "@" or anything after it.
+; *ONLY* specify this if "delivery_method" above is "smtp"
+;email_local_part = ${EMAIL_LOCAL_PART}
+
+
+;
+; Cache settings
+;
+[cache]
+enable = TRUE
+;NOTICE: For security reasons, this must be outside the web server document root.
+dir = /tmp/timetrex
+
+
+
+[debug]
+;Set to false if you're debugging
+production = ${PRODUCTION}
+
+enable = FALSE
+enable_log = FALSE
+verbosity = 10
+
+
+
+[other]
+; Force all clients to use SSL.
+force_ssl = ${FORCE_SSL}
+installer_enabled = TRUE
+primary_company_id = 0
+
+;Use X-SendFile header to speed up file downloads. Must have mod_xsendfile enabled in Apache.
+enable_xsendfile = FALSE
+
+;Specify the URL hostname to be used to access TimeTrex. The BASE_URL specified above will be appended on to this automatically.
+; This should be a fully qualified domain name only, do not include http:// or any trailing directories.
+hostname = ${EMAIL_SMTP_HOST}
+
+;ONLY when using a fully qualified hostname specified above, enable CSRF validation for increased security.
+;enable_csrf_validation = ${ENABLE_CSRF_VALIDATION}
+
+; System Administrators Email address to send critical errors to if necessary. Set to FALSE to disable completely.
+;system_admin_email = "${ADMIN_EMAIL}"
+
+;WARNING: DO NOT CHANGE THIS AFTER YOU HAVE INSTALLED TIMETREX.
+;If you do it will cause all your passwords to become invalid,
+;and you may lose access to some encrypted data.
+salt = 0

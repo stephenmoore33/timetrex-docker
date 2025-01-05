@@ -1,0 +1,1 @@
+ALTER TABLE ui_kit ADD COLUMN time_unit integer DEFAULT 0;

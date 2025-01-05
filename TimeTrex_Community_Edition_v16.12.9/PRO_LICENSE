@@ -1,0 +1,229 @@
+TIMETREX PROFESSIONAL LICENSE
+Version 1.0.0
+
+BY CLICKING THE "I ACCEPT" BOX, OR INSTALLING OR USING THE TimeTrex SOFTWARE
+THAT YOU HAVE SELECTED TO PURCHASE IN THE ORDERING PROCESS (THE "SOFTWARE"),
+YOU ARE AGREEING ON BEHALF OF THE ENTITY LICENSING THE SOFTWARE ("COMPANY")
+THAT COMPANY WILL BE BOUND BY AND IS BECOMING A PARTY TO THIS END USER LICENSE
+AGREEMENT ("AGREEMENT") AND THAT YOU HAVE THE AUTHORITY TO BIND COMPANY. IF
+COMPANY DOES NOT AGREE TO ALL OF THE TERMS OF THIS AGREEMENT, DO NOT SELECT
+THE "I ACCEPT" BOX AND DO NOT INSTALL THE SOFTWARE. COMPANY HAS NOT BECOME A
+LICENSEE OF, AND IS NOT AUTHORIZED TO USE THE SOFTWARE UNLESS AND UNTIL IT HAS
+AGREED TO BE BOUND BY THESE LICENSE TERMS. THE "EFFECTIVE DATE" FOR THIS
+AGREEMENT SHALL BE THE DAY YOU CHECK THE "I ACCEPT" BOX.
+
+1.0 License Grants, Restrictions and Ownership
+1.1 Grant to Company. For the term of this Agreement and subject to Company's
+payment of the License Fee (defined below) TimeTrex Software Inc.
+("TimeTrex") grants Company, for the term of Company's Subscription Period
+(defined below): 1) the right to a non-exclusive, non-transferable,
+nonsublicensable license to use and modify the Software only for Company's
+own internal use of the Software and limited to the number of Licensed Users
+for which Company has paid the applicable fee; and 2) the right to receive
+support services and upgrades for the Software. A "Licensed User" means a
+Company employee authorized by Company to use the Software per the terms of
+this Agreement. "Initial Licensed User" means a Company employee authorized
+to use the Software upon Company's payment of the License Fee. "Additional
+Licensed Users" means a Company employee authorized to use the Software after
+the Company has paid the License Fee but prior to the termination or expiration
+of this Agreement. Collectively, all of the "Initial Licensed Users" and
+"Additional Licensed Users" comprise, and shall be referred to, as the
+"Licensed Users". "Third-Party Software" means certain software TimeTrex
+licenses from third parties and provides to you with or within the Software.
+Certain Third-Party Software provided with the Software is subject to various
+other terms and conditions imposed by the licensors of such Third-Party
+Software. As applicable, the terms of your use of the Third-Party Software is
+subject to and governed by their respective licenses except that Section 4.2
+("As is/Disclaimer of Warranty") and Section 5 ("Limitation of Liability") of
+this Agreement also govern your use of the Third-Party Software. You may view
+the relevant licenses and/or notices for such Third-Party Software by visiting
+their respective directories contained within the TimeTrex archive. You agree
+to comply with terms and conditions contained in all such Third-Party Software
+licenses. You are hereby notified that certain persons and entities who have
+licensed Third-Party Software to TimeTrex for inclusion in the Software are
+third party beneficiaries to this Agreement as it applies to their respective
+software product(s) included in the Software. The Software will be deemed
+accepted by Company on the date Company checks the "I ACCEPT" box.
+
+1.2 Restrictions. Company shall not, directly or indirectly: (i) sublicense,
+resell, rent, lease, distribute, market, commercialize or otherwise transfer
+rights or usage to: (a) the Software, (b) any modified version or derivative
+work of the Software created by the Company or for the Company, or (c) any
+software, either modified or not, licensed under a TimeTrex Public License, for
+any purpose including timesharing or service bureau purposes; (ii) remove or
+alter any copyright, trademark or proprietary notice in the Software; (iii)
+transfer, use or export the Software in violation of any laws or regulations of
+any government or governmental agency; (iv) use or run on any of Company's
+hardware, or have deployed for use, any copy or version of the TimeTrex open
+source version of the Software; (v) reverse engineer, decompile or modify any
+encrypted or encoded portion of the Software; (vi) bifurcate the source code for
+any TimeTrex open source licensed products into a separately maintained source
+code repository so that development done on the original code requires manual
+work to be transferred to the forked software or so that the forked software
+starts to have features not present in the original software. The Software
+includes modules that reports the number of authorized Licensed Users and
+permits TimeTrex the ability to monitor certain usage of the Software
+("Critical Control Software") which is fundamental to the business of TimeTrex.
+Notwithstanding the terms of this Agreement, neither the Company nor the
+Licensed Users may modify any portion of the Critical Control Software. The
+violation of this prohibition shall be deemed a material breach of this
+Agreement and TimeTrex may immediately terminate this Agreement.
+
+1.3 Proprietary Rights. TimeTrex and its licensors shall own all right, title,
+and interest to the Software, technology, information, code or software provided
+to Company, including all portions, copies or modifications thereof. Except as
+expressly provided herein, no license of any kind are granted hereunder, whether
+by implication, estoppel, or otherwise.
+
+1.4 Grant to TimeTrex. During any term of this Agreement, Company grants to
+TimeTrex a non-transferable, non-exclusive, license to reproduce and display
+Company's logos, trademarks, trade names and similar identifying material so
+that TimeTrex may refer to Company as a user of the Software should TimeTrex
+so desire, such as on the TimeTrex website, in press releases and in other
+marketing materials.
+
+2.0 Fees and Payment
+2.1 User Accounts: Company shall designate a License Administrator and notify
+TimeTrex of the identity and contact information for said License Administrator.
+The License Administrator may add Users to the Company's subscription for the
+Software by placing an order with TimeTrex. Company is responsible for all
+activity occurring under Company's User's accounts. Company shall notify
+TimeTrex immediately of any unauthorized use of any password, account, copying
+or distribution of the TimeTrex Technology. User accounts cannot be shared or
+used by more than one individual User but may be reassigned to new Users
+replacing former Users.
+
+2.2 License Fee. Company shall pay to TimeTrex an amount specified on TimeTrex's
+invoice for the number of Licensed Users that Company selects
+("License Fee"). Payment for the License Fee shall be due and payable as set
+forth in TimeTrex's invoice. All fees paid to TimeTrex are non-refundable.
+Company will also pay all taxes, including sales, use, personal property,
+value-added, excise, customs fees, import duties, stamp duties and any other
+similar taxes and duties, including penalties and interest, imposed by any
+Canadian federal, state, provincial or local government entity or any
+non-Canadian government entity on the transactions contemplated by this
+Agreement, excluding taxes based upon TimeTrex's net income.
+
+2.3 Additional Licensed Users Fee. During any Term of this Agreement, Company
+shall pay TimeTrex a fee for any subscriptions for Additional Licensed Users as
+set forth in TimeTrex's invoice ("Additional Licensed User Fee"). The
+Additional Licensed User Fee shall be assessed at the then current rate, and
+shall be due and payable as set forth in TimeTrex's invoice and will be
+assessed pro rata for the then-current calendar quarter. If invoiced by
+TimeTrex, payments for such invoices are due net 30 days unless otherwise
+specified on the invoice.
+
+2.4 Records Retention. Company shall maintain accurate records necessary to
+verify the number of Licensed Users. Upon TimeTrex's written request, Company
+shall provide TimeTrex with such records within ten (10) days. If Company has
+more Licensed Users than Company has paid for, Company shall immediately pay
+TimeTrex the applicable Additional Licensed User Fee in addition to any costs
+incurred by TimeTrex associated with reviewing such records.
+
+3.0 Confidentiality
+Company and TimeTrex agree to maintain the confidentiality of any proprietary
+information received by the other party during, or prior to entering into, this
+Agreement that a party should know is confidential or proprietary based on the
+circumstances surrounding the disclosure, including, without limitation,
+non-public technical and business information ("Confidential Information") for
+a period of two (2) years after the termination of this Agreement. This section
+shall not apply to any publicly available or independently developed information
+or the open source version of the TimeTrex software licensed under the TimeTrex
+Public License. The receiving party of any Confidential Information of the other
+party agrees not to use said Confidential Information for any purpose except as
+necessary to fulfill its obligations and exercise its rights under this
+Agreement. The receiving party shall protect the secrecy of and avoid disclosure
+and unauthorized use of the disclosing party's Confidential Information to the
+same degree that it takes to protect its own confidential information and in no
+event less than reasonable care.
+
+4.0 Infringement and Disclaimer of Warranty
+4.1 As Is/Disclaimer of Warranty. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE
+LAW, EXCEPT AS EXPRESSLY STATED IN THIS AGREEMENT, THE SOFTWARE AS PROVIDED BY
+TIMETREX IS PROVIDED AND LICENSED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, BUT NOT LIMITED TO THE
+IMPLIED WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT AND FITNESS FOR A
+PARTICULAR PURPOSE. TIMETREX DOES NOT WARRANT OR GUARANTEE THAT THE USE OF THE
+SOFTWARE WILL BE UNINTERRUPTED OR ERROR FREE. SOME JURISDICTIONS DO NOT ALLOW
+THE EXCLUSION OF IMPLIED WARRANTIES SO THE ABOVE EXCLUSIONS MAY NOT APPLY TO YOU.
+
+4.2 Infringement. During any term of this Agreement, if any portion of the
+Software is held by a court of competent jurisdiction to infringe any third
+party intellectual property rights and Company incurs a liability or expense
+as a result of such holding, then Company's sole remedy shall be, and TimeTrex
+will, at its option: (i) obtain the right for Company to continue to use the
+Software consistent with this Agreement; (ii) modify the Software so that it
+is non-infringing; or (iii) replace the infringing component with a
+non-infringing component, or (iv) refund all of Company's money paid in the
+then-current calendar quarter under this Agreement and all of Company's rights
+and licenses under this Agreement shall automatically terminate.
+
+5.0 Limitation of Liability
+5.1 Disclaimer of Consequential Damages. TO THE MAXIMUM EXTENT PERMITTED BY
+APPLICABLE LAW, IN NO EVENT WILL TIMETREX BE LIABLE FOR ANY INDIRECT, SPECIAL,
+INCIDENTAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES ARISING OUT OF OR IN ANY WAY
+RELATING TO THIS AGREEMENT OR THE USE OF OR INABILITY TO USE THE SOFTWARE OR
+DOCUMENTATION INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF GOODWILL,
+WORK STOPPAGE, LOST PROFITS, LOSS OF DATA, COMPUTER FAILURE OR ANY AND ALL
+OTHER COMMERCIAL DAMAGES OR LOSSES EVEN IF ADVISED OF THE POSSIBILITY THEREOF
+AND REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT (INCLUDING
+NEGLIGENCE) OR OTHERWISE) UPON WHICH THE CLAIM IS BASED.
+
+5.2 Limitation of All Damages. IN NO EVENT SHALL TIMETREX'S LIABILITY HEREUNDER
+FOR CLAIMS IN THE AGGREGATE, EXCEED THE AMOUNT THAT COMPANY PAID TO TIMETREX
+UNDER THIS AGREEMENT DURING THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE
+ACT OR OMISSION GIVING RISE TO THE LIABILITY.
+
+5.3 Force Majuere. Except for the payment of fees, neither party shall be in
+breach of this Agreement due to failure of performance that arises out of causes
+beyond its reasonable control.
+
+
+6.0 Term and Termination.
+The initial term shall commence on the Effective Date of this Agreement and
+shall continue for a period of one (1) year unless a different term is
+specified by the parties at the time of purchase (the "Subscription Period").
+Thereafter, the Agreement shall renew at the then-current License Fees and
+Additional Licensed User Fees for successive terms of one (1) year, unless
+either party gives written notice to the other of its intention not to renew
+at least sixty (60) days prior to the end of a term. Company shall remain
+obligated for all fees through the date of termination. Either party may
+terminate this Agreement prior to the end of a term if the other party
+materially breaches its obligations hereunder and, where such breach is
+curable, such breach remains uncured for thirty days following written notice
+of the breach. Company's obligation to make a payment of any outstanding,
+unpaid fees and to keep Confidential Information confidential and the terms
+of Section 1.2 shall survive termination or expiration of this Agreement.
+
+
+7.0 General
+Company agrees and certifies that neither the Software nor any other technical
+data received from TimeTrex, nor the direct product thereof, will be exported
+outside of Canada or re-exported except as authorized and as permitted
+by the laws and regulations of Canada and/or the laws and regulations of the
+jurisdiction, (if other than Canada) in which Company rightfully obtained the
+Software. Except as expressly provided herein, Company may not assign its
+rights or delegate its obligations under this Agreement, without the prior
+written consent of TimeTrex. This Agreement will be governed by and construed
+in accordance with the laws of the Province of British Columbia and the federal
+Canadian laws applicable therein, excluding its conflicts of law provisions,
+and Company and TimeTrex agree to submit to the personal and exclusive
+jurisdiction of the courts located in the City of Kelowna, British Columbia.
+The parties agree the United Nations Convention on Contracts for the
+International Sale of Goods will not apply to this Agreement. The failure of
+either party to require performance by the other party of any provision hereof
+shall not affect the full right to require such performance at any time
+thereafter; nor shall the waiver by either party of a breach of any provision
+hereof be taken or held to be a waiver of the provision itself. If any
+provision of this Agreement is found void and unenforceable, it will be
+replaced to the extent possible with a provision that comes closest to the
+meaning of the original provision. This Agreement, and the documents referenced
+in this Agreement, constitutes the entire agreement between Company and
+TimeTrex relating to its subject matter and all terms herein and supercedes
+all prior or contemporaneous agreements or understandings. This Agreement may
+be modified or changed only in writing by authorized representatives of Company
+and TimeTrex. Notices hereunder shall be in writing and addressed to Company
+at the address provided when purchasing this license, or, in the case of
+TimeTrex, when addressed to TimeTrex Software Inc., Attn. Legal Counsel,
+Unit 22 - 2475 Dobbin Road. Suite #292 West Kelowna, BC V4T 2E9 Canada.
+

@@ -1,0 +1,153 @@
+<?php
+/*********************************************************************************
+ *
+ * TimeTrex is a Workforce Management program developed by
+ * TimeTrex Software Inc. Copyright (C) 2003 - 2021 TimeTrex Software Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by
+ * the Free Software Foundation with the addition of the following permission
+ * added to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED
+ * WORK IN WHICH THE COPYRIGHT IS OWNED BY TIMETREX, TIMETREX DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+ * details.
+ *
+ *
+ * You should have received a copy of the GNU Affero General Public License along
+ * with this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ *
+ * You can contact TimeTrex headquarters at Unit 22 - 2475 Dobbin Rd. Suite
+ * #292 West Kelowna, BC V4T 2E9, Canada or at email address info@timetrex.com.
+ *
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License version 3.
+ *
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Powered by TimeTrex" logo. If the display of the logo is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Powered by TimeTrex".
+ *
+ ********************************************************************************/
+
+//Allow CLI scripts to run much longer.
+ini_set( 'max_execution_time', 86400 );
+ini_set( 'memory_limit', '1024M' );
+
+if ( $argc < 2 || in_array( $argv[1], [ '--help', '-help', '-h', '-?' ] ) ) {
+	require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'global.inc.php' );
+	require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'CLI.inc.php' );
+
+	$help_output = "Usage: create_demo_data.php [OPTIONS]\n";
+	$help_output .= "  Options:\n";
+	$help_output .= "    -f (Force creating data even if DEMO_MODE is not enabled. *NOT RECOMMENDED*)\n";
+	$help_output .= "    -s [Numeric USER NAME suffix, ie: '100' to create user names like: 'demoadmin100']\n";
+	$help_output .= "    -n [Number of random users to create above 25]\n";
+	$help_output .= "    -date [Static date to base all other dates on]\n";
+	$help_output .= "    -skip [Skip objects, ie: schedule,punch,invoice,expense,document,hr]\n";
+
+	echo $help_output;
+} else {
+	if ( in_array( '-s', $argv ) ) {
+		$data['suffix'] = trim( $argv[( array_search( '-s', $argv ) + 1 )] );
+	} else {
+		$data['suffix'] = '1';
+	}
+
+	if ( in_array( '-n', $argv ) ) {
+		$data['random_users'] = (int)trim( $argv[( array_search( '-n', $argv ) + 1 )] );
+	} else {
+		$data['random_users'] = 0;
+	}
+
+	if ( in_array( '-date', $argv ) ) {
+		$data['date'] = trim( $argv[( array_search( '-date', $argv ) + 1 )] );
+	} else {
+		$data['date'] = time();
+	}
+
+	if ( in_array( '-f', $argv ) ) {
+		$data['force'] = true;
+	} else {
+		$data['force'] = false;
+	}
+
+	if ( in_array( '-skip', $argv ) ) {
+		$skip = explode( ',', trim( $argv[( array_search( '-skip', $argv ) + 1 )] ) );
+	} else {
+		$skip = [];
+	}
+
+	if ( $data['force'] === true ) {
+		define( 'DEMO_MODE', true ); //When forcing, define this before global.inc.php gets loaded.
+	}
+
+	require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'global.inc.php' );
+	require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'CLI.inc.php' );
+
+	//Debug::setBufferOutput(FALSE);
+	//Debug::setEnable(FALSE);
+	//Debug::setVerbosity(0);
+
+	/*
+	Debug::setBufferOutput(TRUE);
+	Debug::setEnable(TRUE);
+	Debug::setEnableDisplay(TRUE);
+	//Debug::setVerbosity(11);
+	Debug::setVerbosity(10);
+	*/
+
+
+	$config_vars['other']['demo_mode'] = true;
+	$config_vars['other']['enable_plugins'] = false;          //Disable plugins as they shouldn't be needed and likely just cause problems.
+	$config_vars['other']['disable_audit_log'] = true;        //Disable audit logging during initial creation of data to help speed things up.
+	$config_vars['other']['disable_audit_log_detail'] = true; //Disable audit logging during initial creation of data to help speed things up.
+
+	if ( DEMO_MODE == true || $data['force'] === true ) {
+		SystemSettingListFactory::setSystemSetting( 'system_version', APPLICATION_VERSION );
+		SystemSettingListFactory::setSystemSetting( 'tax_engine_version', '1.1.0' );
+		SystemSettingListFactory::setSystemSetting( 'tax_data_version', date( 'Ymd' ) );
+
+		Debug::Text( 'Generating DEMO Data...', __FILE__, __LINE__, __METHOD__, 10 );
+		echo "UserName suffix: " . $data['suffix'] . " Max Random Users: " . $data['random_users'] . "<br>\n";
+		sleep( 1 );
+
+		$dd = new DemoData();
+		$dd->setDate( TTDate::getMiddleDayEpoch( TTDate::strtotime( $data['date'] ) ) ); //Always use middle day epoch so its consistent across runs on the same day.
+		$dd->setMaxRandomUsers( $data['random_users'] );
+		$dd->setUserNamePostFix( $data['suffix'] );
+		$dd->setRandomSeed( (int)( $dd->getDate() + $dd->getUserNamePostFix() ) );
+
+		if ( is_array( $skip ) ) {
+			foreach ( $skip as $skip_object ) {
+				if ( isset( $dd->create_data[$skip_object] ) ) {
+					Debug::Text( '  Skipping Object: ' . $skip_object, __FILE__, __LINE__, __METHOD__, 10 );
+					echo "  Skipping Object: " . $skip_object . "\n";
+					$dd->create_data[$skip_object] = false;
+				}
+			}
+		}
+		flush();
+		ob_flush();
+		sleep( 5 );
+
+		$dd->generateData();
+		Debug::Text( 'Done Generating DEMO Data!', __FILE__, __LINE__, __METHOD__, 10 );
+	} else {
+		echo "DEMO MODE IS NOT ENABLED!<br>\n";
+		exit( 1 );
+	}
+}
+Debug::WriteToLog();
+//Debug::Display();
+?>

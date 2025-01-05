@@ -1,0 +1,2 @@
+import{_ as i,j as t}from"./vendor-tTApdY0Y.bundle.js";class r extends ReportBaseViewController{constructor(e={}){i.defaults(e,{}),super(e)}initReport(e){this.script_name="JobDetailReport",this.viewId="JobAnalysisReport",this.context_menu_name=t.i18n._("Job Analysis"),this.navigation_label=t.i18n._("Saved Report"),this.view_file="JobAnalysisReportView.html",this.api=TTAPI.APIJobDetailReport}getCustomContextMenuModel(){return{include:["default"]}}}export{r as JobAnalysisReportViewController};
+//# sourceMappingURL=JobAnalysisReportViewController-BU3uh1o7.bundle.js.map

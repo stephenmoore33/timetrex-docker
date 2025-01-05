@@ -1,0 +1,16 @@
+id_ID|62|Indonesian <id@li.org>
+ro_RO|86|Romanian <ro@li.org>
+fr_CA|71|CodyCode Team
+da_DK|22|Danish <da@li.org>
+hu_HU|78|Hungarian <hu@li.org>
+zh_ZH|27|
+fr_FR|72|French <fr@li.org>
+pt_BR|19|Brazilian Portuguese <franciscoferreiraluz@yahoo.com.au>
+it_IT|21|Italian <it@li.org>
+ar_EG|37|Arabic <ar@li.org>
+pt_PT|18|Portuguese <pt@li.org>
+es_ES|96|Spanish <es@li.org>
+de_DE|71|German <de@li.org>
+yi_US|99|<N/A>
+en_US|0|<N/A>
+zh_CN|96|

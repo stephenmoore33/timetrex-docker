@@ -1,0 +1,6 @@
+--Update duplicate pay_period_time_sheet_verify records and mark them as deleted, so we can create a unique index on them;
+UPDATE pay_period_time_sheet_verify SET deleted = 1, updated_date = extract( 'epoch' from now() ), updated_by = '00000000-0000-0000-0000-000000000000' where id in ( select a.id from ( select user_id, pay_period_id from pay_period_time_sheet_verify where deleted = 0 group by user_id, pay_period_id having count(*) > 1 ) as tmp, pay_period_time_sheet_verify as a WHERE a.user_id = tmp.user_id AND a.pay_period_id = tmp.pay_period_id and deleted = 0 AND ctid not in ( select ctid from ( select max(ctid) as ctid from pay_period_time_sheet_verify where deleted = 0 group by user_id, pay_period_id having count(*) > 1 ) as tmp2 ) );
+CREATE UNIQUE INDEX pay_period_time_sheet_verify_pay_period_user_id ON pay_period_time_sheet_verify(pay_period_id,user_id) WHERE deleted = 0;
+
+ALTER TABLE ethnic_group ADD custom_field jsonb;
+CREATE INDEX ethnic_group_custom_fields ON ethnic_group USING GIN ( custom_field );

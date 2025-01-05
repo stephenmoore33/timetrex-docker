@@ -1,0 +1,5 @@
+#Hide all source control related files.
+RedirectMatch 404 /\\.(svn|git|gitignore|hg|bzr|cvs|gitlab-ci.yml|gitattributes)(/|$)
+
+#Hide other files that could disclose information with a 403 Forbidden error.
+RedirectMatch 403 /(composer.json|composer.lock|package.json|package-lock.json|files.delete|vite.*|timetrex.ini.php|install_cron.sh)(/|$)

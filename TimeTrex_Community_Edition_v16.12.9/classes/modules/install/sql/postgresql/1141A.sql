@@ -1,0 +1,1 @@
+ALTER TABLE company_deduction ADD COLUMN filter_date_type_id smallint DEFAULT 210;

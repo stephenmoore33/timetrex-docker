@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         defaultTestSuite="Default"
+         backupGlobals="false"
+         backupStaticAttributes="true"
+         bootstrap="BootStrap.php"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         forceCoversAnnotation="false"
+         processIsolation="false"
+         stopOnError="false"
+         failOnWarning="true"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         verbose="false"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    <coverage>
+        <include>
+            <directory suffix=".php">../</directory>
+        </include>
+        <exclude>
+            <file>*.private.*</file>
+            <file>TTLicense*</file>
+
+            <directory suffix=".php">../agi</directory>
+            <directory suffix=".php">../api</directory>
+
+            <directory suffix=".php">../classes/adodb</directory>
+            <directory suffix=".php">../classes/bitmask</directory>
+            <directory suffix=".php">../classes/bounce_handler</directory>
+            <directory suffix=".php">../classes/ChequeForms</directory>
+            <directory suffix=".php">../classes/gbp</directory>
+            <directory suffix=".php">../classes/gsm</directory>
+            <directory suffix=".php">../classes/jpgraph</directory>
+            <directory suffix=".php">../classes/misc</directory>
+            <directory suffix=".php">../classes/other</directory>
+            <directory suffix=".php">../classes/pear</directory>
+            <directory suffix=".php">../classes/upload</directory>
+
+            <directory suffix=".php">../classes/modules/api</directory>
+
+            <directory suffix=".php">../custom_patches</directory>
+
+            <file>../includes/Footer.inc.php</file>
+            <file>../includes/Header.inc.php</file>
+            <file>../includes/Interface.inc.php</file>
+
+            <directory suffix=".php">../interface</directory>
+            <directory suffix=".php">../maint</directory>
+            <directory suffix=".php">../soap</directory>
+            <directory suffix=".php">../test</directory>
+            <directory suffix=".php">../tools</directory>
+            <directory suffix=".php">../unit_tests</directory>
+            <directory suffix=".php">../vendor</directory>
+
+            <file>../index.php</file>
+            <file>../timetrex.ini.php</file>
+        </exclude>
+    </coverage>
+    <testsuites>
+        <testsuite name="Default">
+            <directory suffix=".php">testcases</directory>
+            <exclude>**/selenium</exclude>
+            <exclude>testcases/other/TTAITest.php</exclude>
+        </testsuite>
+        <testsuite name="Schema">
+            <file>testcases/other/TTSchemaDataTest.php</file>
+        </testsuite>
+        <testsuite name="AI">
+            <!-- Must use "[dashdash]testsuite AI" to run this suite, or even filter unit tests in it. -->
+            <file>testcases/other/TTAITest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
